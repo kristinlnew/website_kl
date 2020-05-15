@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Kristin Newmaster" />
+    <meta name="description" content="Website">
+    <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico">
+    <title>Project2</title>
+    <meta name="generator" content="Hugo 0.70.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,200bold,400old" />
+    
+    <!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+    
+  </head>
+
+  <body>
+    <div id="wrap">
+
+      
+      <nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="../"><i class="fa fa-home"></i></a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+        <li><a href="../blog/">BLOG</a></li>
+        
+        <li><a href="../projects/">PROJECTS</a></li>
+        
+        <li><a href="../resumecompbio.pdf">RESUME</a></li>
+        
+      
+      </ul>
+    </div>
+  </div>
+</nav>
+
+      
+      <div class="container">
+        <div class="blog-post">
+          <h3>
+            <strong><a href="../project2/">Project2</a></strong>
+          </h3>
+        </div>
+        <div class="blog-title">
+          <h4>
+          January 1, 0001
+            &nbsp;&nbsp;
+            
+          </h4>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="blogpost">
+              
+
+
+<pre class="r"><code>knitr::opts_chunk$set(echo = TRUE, eval = TRUE, fig.align = &quot;center&quot;, warning = F, message = F,
+tidy=TRUE, tidy.opts=list(width.cutoff=60), R.options=list(max.print=100))</code></pre>
+<div id="r-markdown" class="section level2">
+<h2>R Markdown</h2>
+<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
+</div>
+<div id="the-first-dataset-calories-gives-the-average-daily-caloric-intake-of-an-adult-per-country-and-per-year.-the-dataset-sugar-gives-the-average-quantity-of-sugar-and-sweeteners-eaten-per-day-in-grams-per-country-and-per-year.-the-third-dataset-life-gives-the-average-life-expectancy-per-country-and-per-year.-after-combining-the-datasets-and-tidying-there-are-7958-total-observations.-after-combining-the-datasets-i-added-a-binary-variable-y-which-shows-whether-a-person-died-before-or-after-the-age-of-60." class="section level1">
+<h1>The first dataset, “calories” gives the average daily caloric intake of an adult, per country and per year. The dataset “sugar” gives the average quantity of sugar and sweeteners eaten per day (in grams), per country and per year. The third dataset, “life” gives the average life expectancy, per country and per year. After combining the datasets and tidying, there are 7958 total observations. After combining the datasets I added a binary variable y which shows whether a person died before or after the age of 60.</h1>
+<pre class="r"><code>library(dplyr)
+library(tidyverse)
+
+
+calories &lt;- read.csv(&quot;food_supply_kilocalories_per_person_and_day.csv&quot;, 
+    check.names = FALSE)
+sugar &lt;- read.csv(&quot;sugar_per_person_g_per_day.csv&quot;, check.names = FALSE)
+life &lt;- read.csv(&quot;life_expectancy_years.csv&quot;, check.names = FALSE)
+
+
+calories &lt;- calories %&gt;% pivot_longer(c(&quot;1961&quot;:&quot;2013&quot;), names_to = &quot;year&quot;, 
+    values_to = &quot;calories&quot;)
+sugar &lt;- sugar %&gt;% pivot_longer(c(&quot;1961&quot;:&quot;2013&quot;), names_to = &quot;year&quot;, 
+    values_to = &quot;sugar&quot;)
+life &lt;- life %&gt;% pivot_longer(c(&quot;1800&quot;:&quot;2018&quot;), names_to = &quot;year&quot;, 
+    values_to = &quot;life.expectency&quot;)
+
+first &lt;- left_join(life, sugar)
+
+nutri &lt;- left_join(first, calories)
+
+nutri &lt;- nutri %&gt;% na.omit()</code></pre>
+<div id="the-above-code-is-to-create-the-dataset" class="section level2">
+<h2>The above code is to create the dataset</h2>
+<pre class="r"><code>library(dplyr)
+
+
+
+nutriyle &lt;- nutri %&gt;% mutate(y = ifelse(life.expectency &gt; &quot;60&quot;, 
+    1, 0))
+nutriyy &lt;- nutriyle %&gt;% mutate(year90 = ifelse(year &gt; &quot;1990&quot;, 
+    1, 0))
+
+
+manov &lt;- manova(cbind(sugar, calories, life.expectency) ~ country, 
+    data = nutriyy)
+
+
+summary(manov)</code></pre>
+<pre><code>##             Df Pillai approx F num Df den Df    Pr(&gt;F)    
+## country    166 1.9111   82.372    498  23373 &lt; 2.2e-16 ***
+## Residuals 7791                                            
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>summary.aov(manov)</code></pre>
+<pre><code>##  Response sugar :
+##               Df   Sum Sq Mean Sq F value    Pr(&gt;F)    
+## country      166 15190266   91508  105.95 &lt; 2.2e-16 ***
+## Residuals   7791  6728928     864                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+##  Response calories :
+##               Df     Sum Sq Mean Sq F value    Pr(&gt;F)    
+## country      166 1638411351 9869948   164.1 &lt; 2.2e-16 ***
+## Residuals   7791  468598231   60146                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+##  Response life.expectency :
+##               Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## country      166 622990  3753.0  136.22 &lt; 2.2e-16 ***
+## Residuals   7791 214647    27.6                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>nutrcal &lt;- nutriyy %&gt;% mutate(cal.level = case_when(calories &lt;= 
+    2150 ~ &quot;low&quot;, calories &lt;= 2990 ~ &quot;mid&quot;, calories &lt;= 3830 ~ 
+    &quot;high&quot;))
+
+
+
+pairwise.t.test(nutrcal$sugar, nutrcal$cal.level, p.adj = &quot;none&quot;)</code></pre>
+<pre><code>## 
+##  Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  nutrcal$sugar and nutrcal$cal.level 
+## 
+##     high   low   
+## low &lt;2e-16 -     
+## mid &lt;2e-16 &lt;2e-16
+## 
+## P value adjustment method: none</code></pre>
+<pre class="r"><code>pairwise.t.test(nutrcal$life.expectency, nutrcal$cal.level, p.adj = &quot;none&quot;)</code></pre>
+<pre><code>## 
+##  Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  nutrcal$life.expectency and nutrcal$cal.level 
+## 
+##     high   low   
+## low &lt;2e-16 -     
+## mid &lt;2e-16 &lt;2e-16
+## 
+## P value adjustment method: none</code></pre>
+</div>
+</div>
+<div id="manova-all-3-variables-show-significant-differneces-in-their-means-p-vaule-2e-16" class="section level1">
+<h1>1. Manova: All 3 variables show significant differneces in their means (p-vaule = 2e-16)</h1>
+</div>
+<div id="univariate-anova-both-significant-for-sugar-and-calories-at-least-one-country-differs." class="section level1">
+<h1>Univariate ANOVA: Both significant: for sugar and calories, at least one country differs.</h1>
+</div>
+<div id="i-ran-two-t-tests-1-.952-.0975-probability-of-at-least-one-type-1-error.-after-bonferroni-correction-alpha-prime-.025.-all-still-have-significant-differneces." class="section level1">
+<h1>I ran two t tests, (1-.95^2) =.0975 = Probability of at least one type 1 error. After Bonferroni correction alpha prime= .025. All still have significant differneces.</h1>
+</div>
+<div id="the-assumption-of-random-samples-may-be-disrupted-by-the-removal-of-nas.-multivariate-normality-is-not-likely-to-be-met-and-each-group-doesnt-seem-to-be-normally-distrubuted.-there-are-some-extreme-outliers.-there-doesnt-seem-to-be-multicollinearity-dvs-arernt-too-correlated" class="section level1">
+<h1>The assumption of random samples may be disrupted by the removal of NAs. Multivariate normality is not likely to be met and each group doesn’t seem to be normally distrubuted. There are some extreme outliers. There doesn’t seem to be multicollinearity (DVs arern’t too correlated)</h1>
+<pre class="r"><code>library(dplyr)
+
+nutrcal %&gt;% group_by(y) %&gt;% summarize(s = sd(sugar)) %&gt;% summarize(diff(s))</code></pre>
+<pre><code>## # A tibble: 1 x 1
+##   `diff(s)`
+##       &lt;dbl&gt;
+## 1      22.0</code></pre>
+<pre class="r"><code>library(tidyverse)
+set.seed(1234)
+rand_dist &lt;- vector()
+
+for (i in 1:5000) {
+    new &lt;- data.frame(sugar = sample(nutrcal$sugar), y = nutrcal$y)
+    rand_dist[i] &lt;- sd(new[new$y == &quot;0&quot;, ]$sugar) - sd(new[new$y == 
+        &quot;1&quot;, ]$sugar)
+}
+
+
+mean(rand_dist &gt; 22 | rand_dist &lt; -22)</code></pre>
+<pre><code>## [1] 0</code></pre>
+<pre class="r"><code>{
+    hist(rand_dist, main = &quot;&quot;, ylab = &quot;&quot;, xlim = c(-25, 25))
+    abline(v = 22, col = &quot;red&quot;)
+    abline(v = -22, col = &quot;red&quot;)
+}</code></pre>
+<p><img src="../project2_files/figure-html/pressure-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="section" class="section level1">
+<h1>2.</h1>
+</div>
+<div id="h0the-sd-of-the-group-with-life-expectency-under-60-is-the-same-as-for-the-group-with-life-expectency-above-60." class="section level1">
+<h1>H0:The sd of the group with life expectency under 60 is the same as for the group with life expectency above 60.</h1>
+</div>
+<div id="h1the-sd-of-the-group-with-life-expectency-under-60-is-different-from-the-group-with-life-expectency-above-60." class="section level1">
+<h1>H1:The sd of the group with life expectency under 60 is different from the group with life expectency above 60.</h1>
+</div>
+<div id="p-vaule-of-0.-reject-the-null-h0.-sd-sugar-intake-in-grams-is-not-the-same-for-people-with-life-expectancies-below-60-and-people-with-life-epectancies-above-60." class="section level1">
+<h1>p-vaule of 0. Reject the null (H0). Sd sugar intake in grams is not the same for people with life expectancies below 60 and people with life epectancies above 60.</h1>
+<pre class="r"><code>library(sandwich)
+library(lmtest)
+nutrcalcenter &lt;- nutrcal %&gt;% mutate(sug.cent = scale(nutrcal$sugar, 
+    center = TRUE, scale = FALSE))
+
+
+fit &lt;- lm(life.expectency ~ sug.cent * cal.level, data = nutrcalcenter)
+summary(fit)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = life.expectency ~ sug.cent * cal.level, data = nutrcalcenter)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -101.578   -4.031    0.403    4.535   21.068 
+## 
+## Coefficients:
+##                         Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)            72.670795   0.253224 286.982  &lt; 2e-16 ***
+## sug.cent                0.045262   0.005481   8.257  &lt; 2e-16 ***
+## cal.levellow          -16.192881   0.311397 -52.001  &lt; 2e-16 ***
+## cal.levelmid           -7.734573   0.275355 -28.089  &lt; 2e-16 ***
+## sug.cent:cal.levellow  -0.001154   0.006130  -0.188    0.851    
+## sug.cent:cal.levelmid   0.047478   0.005938   7.996 1.47e-15 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 6.89 on 7952 degrees of freedom
+## Multiple R-squared:  0.5493, Adjusted R-squared:  0.549 
+## F-statistic:  1939 on 5 and 7952 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>nutrcalcenter %&gt;% ggplot(aes(x = sug.cent, y = life.expectency, 
+    color = cal.level)) + scale_x_log10() + geom_smooth(method = &quot;lm&quot;, 
+    se = T) + geom_point()</code></pre>
+<p><img src="../project2_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>nutrcalcenter %&gt;% ggplot(aes(x = sug.cent, y = life.expectency, 
+    color = cal.level)) + scale_x_log10() + geom_smooth(method = &quot;lm&quot;, 
+    se = T)</code></pre>
+<p><img src="../project2_files/figure-html/unnamed-chunk-2-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>resids &lt;- fit$residuals
+fitvals &lt;- fit$fitted.values
+
+ggplot() + geom_point(aes(fitvals, resids)) + geom_hline(yintercept = 0, 
+    col = &quot;red&quot;) + coord_trans(x = &quot;log2&quot;)</code></pre>
+<p><img src="../project2_files/figure-html/unnamed-chunk-2-3.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>bptest(fit)</code></pre>
+<pre><code>## 
+##  studentized Breusch-Pagan test
+## 
+## data:  fit
+## BP = 1236.5, df = 5, p-value &lt; 2.2e-16</code></pre>
+<pre class="r"><code>summary(fit)$coef[, 1:2]  ##uncorrected SEs</code></pre>
+<pre><code>##                            Estimate  Std. Error
+## (Intercept)            72.670795195 0.253224370
+## sug.cent                0.045262320 0.005481452
+## cal.levellow          -16.192880581 0.311396705
+## cal.levelmid           -7.734572634 0.275355424
+## sug.cent:cal.levellow  -0.001154158 0.006129514
+## sug.cent:cal.levelmid   0.047477683 0.005938006</code></pre>
+<pre class="r"><code>coeftest(fit, vcov = vcovHC(fit))</code></pre>
+<pre><code>## 
+## t test of coefficients:
+## 
+##                          Estimate  Std. Error  t value  Pr(&gt;|t|)    
+## (Intercept)            72.6707952   0.2147360 338.4193 &lt; 2.2e-16 ***
+## sug.cent                0.0452623   0.0043083  10.5058 &lt; 2.2e-16 ***
+## cal.levellow          -16.1928806   0.7800094 -20.7599 &lt; 2.2e-16 ***
+## cal.levelmid           -7.7345726   0.2428956 -31.8432 &lt; 2.2e-16 ***
+## sug.cent:cal.levellow  -0.0011542   0.0198958  -0.0580  0.953742    
+## sug.cent:cal.levelmid   0.0474777   0.0158239   3.0004  0.002705 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>ggplot() + geom_histogram(aes(resids), bins = 200)</code></pre>
+<p><img src="../project2_files/figure-html/unnamed-chunk-2-4.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ks.test(resids, &quot;pnorm&quot;, sd = sd(resids))</code></pre>
+<pre><code>## 
+##  One-sample Kolmogorov-Smirnov test
+## 
+## data:  resids
+## D = 0.033209, p-value = 4.765e-08
+## alternative hypothesis: two-sided</code></pre>
+<pre class="r"><code>summary(fit)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = life.expectency ~ sug.cent * cal.level, data = nutrcalcenter)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -101.578   -4.031    0.403    4.535   21.068 
+## 
+## Coefficients:
+##                         Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)            72.670795   0.253224 286.982  &lt; 2e-16 ***
+## sug.cent                0.045262   0.005481   8.257  &lt; 2e-16 ***
+## cal.levellow          -16.192881   0.311397 -52.001  &lt; 2e-16 ***
+## cal.levelmid           -7.734573   0.275355 -28.089  &lt; 2e-16 ***
+## sug.cent:cal.levellow  -0.001154   0.006130  -0.188    0.851    
+## sug.cent:cal.levelmid   0.047478   0.005938   7.996 1.47e-15 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 6.89 on 7952 degrees of freedom
+## Multiple R-squared:  0.5493, Adjusted R-squared:  0.549 
+## F-statistic:  1939 on 5 and 7952 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>dat &lt;- data.frame(x = nutrcalcenter$sug.cent, y1 = nutrcalcenter$life.expectency)
+breaks &lt;- seq(min(dat$x), max(dat$x), len = 8)
+ggplot(dat, aes(x, y1)) + geom_point(alpha = 0.3) + theme_bw() + 
+    geom_vline(xintercept = breaks, lty = 2, color = &quot;gray50&quot;)</code></pre>
+<p><img src="../project2_files/figure-html/unnamed-chunk-2-5.png" width="672" style="display: block; margin: auto;" /> #3. The intercept is 72.67080. The predicted life expectency = 72.67080 + 0.04526(sugar, mean centered). For every one unit increase in sugar(centered), there is a 0.04526 increase in life expectency on average.</p>
+</div>
+<div id="for-people-with-average-sugar-intake-people-eating-a-low-number-of-calories-have-a-predicted-life-expectency-that-is-16.19288-lower-than-the-high-calorie-people." class="section level1">
+<h1>For people with average sugar intake, people eating a “low” number of calories have a predicted life expectency that is 16.19288 lower than the “high” calorie people.</h1>
+</div>
+<div id="for-people-with-an-average-sugar-intake-people-eating-a-mid-number-of-calories-have-a-predicted-life-expectency-that-is-7.73457-lower-than-the-high-calorie-people." class="section level1">
+<h1>For people with an average sugar intake, people eating a “mid” number of calories have a predicted life expectency that is 7.73457 lower than the “high” calorie people.</h1>
+</div>
+<div id="is-the-years-of-life-expectency-accounted-for-by-the-association-of-sugarcentered-and-the-calorie-level-low" class="section level1">
+<h1>-0.00115 is the years of life expectency accounted for by the association of sugar(centered) and the calorie level “low”</h1>
+</div>
+<div id="is-the-years-of-life-expectency-accounted-for-by-the-association-of-sugarcentered-and-the-calorie-level-mid" class="section level1">
+<h1>0.04748 is the years of life expectency accounted for by the association of sugar(centered) and the calorie level “mid”</h1>
+</div>
+<div id="bptest-p-vaule-2e-16-is-.05-so-reject-the-null-hypothesis-of-homoskedasticity." class="section level1">
+<h1>bptest p vaule (2e-16) is &lt;.05 so reject the null hypothesis of homoskedasticity.</h1>
+</div>
+<div id="robust-se-p-vaule-.05-for-all-excpet-sug.centcal.levellow-the-interaction-of-sugarcentered-and-calorie-level-low.-the-p-vaule-is-0.9537.-the-ses-for-intercept-sugcent-and-cal.levelmid-decreased-when-corrected-the-rest-increased." class="section level1">
+<h1>robust SE p vaule &lt;.05 for all excpet sug.cent:cal.levellow, the interaction of sugar(centered) and calorie level “low”. the p vaule is 0.9537. The SEs for intercept, sug,cent and cal.levelmid decreased when corrected, the rest increased.</h1>
+</div>
+<div id="r2-and-adjusted-r2-.549-is-the-proportion-of-variation-in-the-response-variable-explained-by-the-overall-model." class="section level1">
+<h1>R^2 and adjusted R^2 (.549) is the proportion of variation in the response variable explained by the overall model.</h1>
+</div>
+<div id="the-assumptions-of-linearity-normality-and-homoskedasticity-are-not-met-according-to-the-plots." class="section level1">
+<h1>The assumptions of linearity, normality, and homoskedasticity are not met according to the plots.</h1>
+<pre class="r"><code>boot &lt;- sample_frac(nutrcalcenter, replace = T)
+
+samp_distn &lt;- replicate(5000, {
+    boot &lt;- sample_frac(nutrcalcenter, replace = T)
+    fit &lt;- lm(life.expectency ~ sug.cent * cal.level, data = boot)
+    coef(fit)
+})
+
+samp_distn %&gt;% t %&gt;% as.data.frame %&gt;% summarize_all(sd)</code></pre>
+<pre><code>##   (Intercept)    sug.cent cal.levellow cal.levelmid sug.cent:cal.levellow
+## 1   0.2113361 0.004278425    0.8187906    0.2400884            0.02087554
+##   sug.cent:cal.levelmid
+## 1            0.01355258</code></pre>
+</div>
+<div id="section-1" class="section level1">
+<h1>4.</h1>
+<pre><code>                uncorrected SEs   robust SEs   bootstrap SEs           </code></pre>
+<p>(Intercept) 0.25322 0.21474 0.209 sug.cent 0.00548 0.00431 0.0042 cal.levellow 0.31140 0.78001 0.813 cal.levelmid 0.27536 0.24290 0.235<br />
+sug.cent:cal.levellow 0.00613 0.01990 0.0209 sug.cent:cal.levelmid 0.00594 0.01582 0.0137</p>
+</div>
+<div id="none-of-the-ses-changed-significantly" class="section level1">
+<h1>None of the SEs changed significantly</h1>
+<pre class="r"><code>fitt &lt;- glm(y ~ sugar + calories, data = nutrcalcenter, family = &quot;binomial&quot;)
+
+
+
+summary(fitt)  ##interpret </code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = y ~ sugar + calories, family = &quot;binomial&quot;, data = nutrcalcenter)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -3.0245  -0.5242   0.1474   0.4764   2.3168  
+## 
+## Coefficients:
+##               Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -7.5302317  0.2400701  -31.37   &lt;2e-16 ***
+## sugar        0.0351813  0.0011223   31.35   &lt;2e-16 ***
+## calories     0.0025389  0.0001051   24.16   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 10032.9  on 7957  degrees of freedom
+## Residual deviance:  5476.9  on 7955  degrees of freedom
+## AIC: 5482.9
+## 
+## Number of Fisher Scoring iterations: 6</code></pre>
+<pre class="r"><code>nutracallog &lt;- nutrcalcenter %&gt;% mutate(logit = predict(fitt, 
+    type = &quot;link&quot;))
+nutlog &lt;- nutracallog %&gt;% mutate(y = ifelse(life.expectency &gt; 
+    &quot;60&quot;, 1, 0))
+
+
+probs &lt;- predict(fitt, type = &quot;response&quot;)
+
+class_diag &lt;- function(probs, truth) class_diag(probs, nutlog$y)
+
+
+table(predict = as.numeric(probs &gt; 0.5), truth = nutlog$y) %&gt;% 
+    addmargins</code></pre>
+<pre><code>##        truth
+## predict    0    1  Sum
+##     0   1955  590 2545
+##     1    629 4784 5413
+##     Sum 2584 5374 7958</code></pre>
+<pre class="r"><code>4784/5374</code></pre>
+<pre><code>## [1] 0.8902121</code></pre>
+<pre class="r"><code>1955/2584</code></pre>
+<pre><code>## [1] 0.7565789</code></pre>
+<pre class="r"><code>4784/5413</code></pre>
+<pre><code>## [1] 0.8837983</code></pre>
+<pre class="r"><code>(1955 + 4784)/7958</code></pre>
+<pre><code>## [1] 0.8468208</code></pre>
+<pre class="r"><code>nutrcalcenter$logit &lt;- predict(fitt, type = &quot;link&quot;)
+
+
+
+
+
+
+fitt &lt;- glm(y ~ sugar + calories, data = nutlog, family = &quot;binomial&quot;)
+nutlog$prob &lt;- predict(fitt, type = &quot;response&quot;)
+nutlog$y &lt;- as.factor(nutlog$y)
+
+nutlog$logit &lt;- predict(fitt, type = &quot;link&quot;)
+
+nutlog %&gt;% ggplot(aes(logit, color = y, fill = y)) + geom_density(alpha = 0.4) + 
+    theme(legend.position = c(0.85, 0.85)) + geom_vline(xintercept = 0) + 
+    xlab(&quot;predictor(logit)&quot;) + geom_rug(aes(logit, color = y))</code></pre>
+<p><img src="../project2_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>library(plotROC)
+
+
+nutlog2 &lt;- nutracallog %&gt;% mutate(y = ifelse(life.expectency &gt; 
+    &quot;60&quot;, 1, 0))
+fitt2 &lt;- glm(y ~ sugar + calories, data = nutlog2, family = &quot;binomial&quot;)
+preprobs &lt;- predict(fitt2, type = &quot;response&quot;)
+
+
+ROCplot &lt;- ggplot(nutlog2) + geom_roc(aes(d = y, m = preprobs), 
+    n.cuts = 0)
+ROCplot</code></pre>
+<p><img src="../project2_files/figure-html/unnamed-chunk-4-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>calc_auc(ROCplot)</code></pre>
+<pre><code>##   PANEL group       AUC
+## 1     1    -1 0.9145165</code></pre>
+<pre class="r"><code>class_diag &lt;- function(probs, truth) {
+    # CONFUSION MATRIX: CALCULATE ACCURACY, TPR, TNR, PPV
+    tab &lt;- table(factor(probs &gt; 0.5, levels = c(&quot;FALSE&quot;, &quot;TRUE&quot;)), 
+        truth)
+    acc = sum(diag(tab))/sum(tab)
+    sens = tab[2, 2]/colSums(tab)[2]
+    spec = tab[1, 1]/colSums(tab)[1]
+    ppv = tab[2, 2]/rowSums(tab)[2]
+    if (is.numeric(truth) == FALSE &amp; is.logical(truth) == FALSE) 
+        truth &lt;- as.numeric(truth) - 1
+    # CALCULATE EXACT AUC
+    ord &lt;- order(probs, decreasing = TRUE)
+    probs &lt;- probs[ord]
+    truth &lt;- truth[ord]
+    TPR = cumsum(truth)/max(1, sum(truth))
+    
+    FPR = cumsum(!truth)/max(1, sum(!truth))
+    dup &lt;- c(probs[-1] &gt;= probs[-length(probs)], FALSE)
+    TPR &lt;- c(0, TPR[!dup], 1)
+    FPR &lt;- c(0, FPR[!dup], 1)
+    n &lt;- length(TPR)
+    auc &lt;- sum(((TPR[-1] + TPR[-n])/2) * (FPR[-1] - FPR[-n]))
+    data.frame(acc, sens, spec, ppv, auc)
+}
+
+k = 10
+
+lifedata &lt;- nutlog2 %&gt;% sample_frac  #put rows of dataset in random order
+folds &lt;- ntile(1:nrow(lifedata), n = 10)  #create fold labels
+
+diags &lt;- NULL
+for (i in 1:k) {
+    train &lt;- lifedata[folds != i, ]  #create training set (all but fold i)
+    test &lt;- lifedata[folds == i, ]  #create test set (just fold i)
+    truth &lt;- test$y  #save truth labels from fold i
+    
+    fittt3 &lt;- glm(y ~ sugar + calories, data = train, family = &quot;binomial&quot;)
+    probs &lt;- predict(fittt3, newdata = test, type = &quot;response&quot;)
+    
+    diags &lt;- rbind(diags, class_diag(probs, truth))
+}
+
+summarize_all(diags, mean)</code></pre>
+<pre><code>##         acc      sens      spec       ppv       auc
+## 1 0.8465684 0.8903745 0.7554228 0.8833335 0.9143975</code></pre>
+</div>
+<div id="the-auc-is-.662.-there-are-1300-false-positives-and-1849-are-false-positives.-the-sensitivy-tpr-is-.89." class="section level1">
+<h1>5. The AUC is .662. There are 1300 false positives and 1849 are false positives. The sensitivy (TPR) is .89.</h1>
+</div>
+<div id="the-specificity-tnr-is-.757.-the-precision-ppv-is-.884.-the-accuracy-is-.847." class="section level1">
+<h1>The specificity (TNR) is .757. The Precision (PPV) is .884. The accuracy is .847.</h1>
+</div>
+<div id="in-the-predictordensity-curve-y0-for-life-expectency-60-and-y1-for-life-expectency-60." class="section level1">
+<h1>In the predictor/density curve y=0 for life expectency &lt;60 and y=1 for life expectency &gt;60.</h1>
+</div>
+<div id="the-roc-curve-is-the-visualization-of-the-trade-off-between-sensitivity-and-specificity.-the-auc-of-.915-great-summarizes-both-in-a-single-vaule." class="section level1">
+<h1>The ROC curve is the visualization of the trade-off between sensitivity and specificity. The AUC of .915 (great) summarizes both in a single vaule.</h1>
+</div>
+<div id="the-output-from-the-cv-model-is-identical-to-the-previous-model.-the-tpr-is-.89-the-tnr-is-.756-the-ppv-is-.884-the-auc-is-.914-and-the-accurary-is-.847." class="section level1">
+<h1>The output from the CV model is ~identical to the previous model. The TPR is .89, the TNR is .756, the PPV is .884, the AUC is .914 and the accurary is .847.</h1>
+<pre class="r"><code>library(glmnet)
+
+
+
+y &lt;- as.matrix(nutlog2$y)  #grab response
+x &lt;- model.matrix(y ~ sugar + calories, data = nutlog2)[, -1]  #grab predictors
+head(x)</code></pre>
+<pre><code>##   sugar calories
+## 1  14.4     3000
+## 2  12.8     2920
+## 3  13.2     2700
+## 4  15.5     2950
+## 5  16.3     2960
+## 6  16.7     2740</code></pre>
+<pre class="r"><code>cv &lt;- cv.glmnet(x, y)
+
+
+
+cv &lt;- cv.glmnet(x, y, family = &quot;binomial&quot;)
+lasso &lt;- glmnet(x, y, family = &quot;binomial&quot;, lambda = cv$lambda.1se)
+
+coef(lasso)</code></pre>
+<pre><code>## 3 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+##                       s0
+## (Intercept) -5.887953137
+## sugar        0.028248557
+## calories     0.001991098</code></pre>
+<pre class="r"><code>k = 10
+
+lifedata &lt;- nutlog2 %&gt;% sample_frac  #put rows of dataset in random order
+folds &lt;- ntile(1:nrow(lifedata), n = 10)  #create fold labels
+
+diags &lt;- NULL
+for (i in 1:k) {
+    train &lt;- lifedata[folds != i, ]  #create training set (all but fold i)
+    test &lt;- lifedata[folds == i, ]  #create test set (just fold i)
+    truth &lt;- test$y  #save truth labels from fold i
+    
+    fit4 &lt;- glm(y ~ sugar + calories, data = train, family = &quot;binomial&quot;)
+    probs &lt;- predict(fit4, newdata = test, type = &quot;response&quot;)
+    
+    diags &lt;- rbind(diags, class_diag(probs, truth))
+}
+
+summarize_all(diags, mean)</code></pre>
+<pre><code>##         acc      sens      spec       ppv      auc
+## 1 0.8463185 0.8892895 0.7561359 0.8838944 0.914425</code></pre>
+</div>
+<div id="sugar-and-calories-are-the-variables-retained-in-the-lasso-regression." class="section level1">
+<h1>6. Sugar and calories are the variables retained in the LASSO regression.</h1>
+</div>
+<div id="since-sugar-and-calories-are-the-variables-i-used-previously-the-output-is-nearly-identical." class="section level1">
+<h1>Since sugar and calories are the variables I used previously the output is nearly identical.</h1>
+</div>
+
+              <hr>
+              <div class="related-posts">
+                <h5>Related Posts</h5>
+                
+              </div>
+            </div>
+          </div>
+          <hr>
+        <div class="disqus">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+
+    (function() {
+      
+      
+      if (window.location.hostname == "localhost")
+        return;
+
+      var disqus_shortname = '';
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+        </div>
+      </div>
+      
+    </div>
+
+    
+    <footer>
+  <div id="footer">
+    <div class="container">
+      <p class="text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io/">Hugo</a> and
+      <a href="http://www.github.com/nurlansu/hugo-sustain/">sustain</a> with ♥</p>
+    </div>
+  </div>
+</footer>
+<div class="footer"></div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="../js/docs.min.js"></script>
+<script src="../js/main.js"></script>
+
+<script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+
+    
+  </body>
+</html>

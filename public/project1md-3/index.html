@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Chris Turner" />
+    <meta name="description" content="Describe your website">
+    <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico">
+    <title>Project 1</title>
+    <meta name="generator" content="Hugo 0.70.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,200bold,400old" />
+    
+    <!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+    
+  </head>
+
+  <body>
+    <div id="wrap">
+
+      
+      <nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="../"><i class="fa fa-home"></i></a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+        <li><a href="../blog/">BLOG</a></li>
+        
+        <li><a href="../projects/">PROJECTS</a></li>
+        
+        <li><a href="../resumecompbio.pdf">RESUME</a></li>
+        
+      
+      </ul>
+    </div>
+  </div>
+</nav>
+
+      
+      <div class="container">
+        <div class="blog-post">
+          <h3>
+            <strong><a href="../project1md-3/">Project 1</a></strong>
+          </h3>
+        </div>
+        <div class="blog-title">
+          <h4>
+          January 1, 0001
+            &nbsp;&nbsp;
+            
+          </h4>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="blogpost">
+              
+
+
+<div id="r-markdown" class="section level2">
+<h2>R Markdown</h2>
+<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
+<p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
+</div>
+<div id="i-selected-three-datasets-from-gapminder.-the-first-dataset-calories-gives-the-average-daily-caloric-intake-of-an-adult-per-country-and-per-year.-the-dataset-sugar-gives-the-average-quantity-of-sugar-and-sweeteners-eaten-per-day-in-grams-per-country-and-per-year.-the-third-dataset-life-gives-the-average-life-expectancy-per-country-and-per-year.-these-datasets-were-interesting-to-me-because-i-am-interested-in-nutrition.-i-would-like-to-see-if-there-is-a-relationship-between-average-calories-and-sugar-intake-and-between-sugar-intake-and-average-life-expectancy.-i-am-also-interested-to-see-how-countries-compare-to-one-another-on-all-three-variables." class="section level2">
+<h2>I selected three datasets from Gapminder. The first dataset, “calories” gives the average daily caloric intake of an adult, per country and per year. The dataset “sugar” gives the average quantity of sugar and sweeteners eaten per day (in grams), per country and per year. The third dataset, “life” gives the average life expectancy, per country and per year. These datasets were interesting to me because I am interested in nutrition. I would like to see if there is a relationship between average calories and sugar intake, and between sugar intake and average life expectancy. I am also interested to see how countries compare to one another on all three variables.</h2>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ───────────────────────────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>## ✔ ggplot2 3.2.1          ✔ purrr   0.3.3     
+## ✔ tibble  2.1.3          ✔ dplyr   0.8.3     
+## ✔ tidyr   1.0.0.9000     ✔ stringr 1.4.0     
+## ✔ readr   1.3.1          ✔ forcats 0.4.0</code></pre>
+<pre><code>## ── Conflicts ──────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(dplyr)
+
+calories &lt;- read.csv(&quot;food_supply_kilocalories_per_person_and_day.csv&quot;, check.names = FALSE)
+
+
+sugar &lt;- read.csv(&quot;sugar_per_person_g_per_day.csv&quot;, check.names = FALSE)
+
+
+
+life &lt;- read.csv(&quot;life_expectancy_years.csv&quot;, check.names = FALSE)</code></pre>
+<pre class="r"><code>calories &lt;- calories %&gt;% pivot_longer(c(&quot;1961&quot;:&quot;2013&quot;), names_to=&quot;year&quot;, values_to=&quot;calories&quot;)
+
+sugar&lt;- sugar %&gt;% pivot_longer(c(&quot;1961&quot;:&quot;2013&quot;), names_to=&quot;year&quot;, values_to=&quot;sugar&quot;)
+
+life &lt;- life %&gt;% pivot_longer(c(&quot;1800&quot;:&quot;2018&quot;), names_to = &quot;year&quot;, values_to = &quot;life.expectency&quot;)</code></pre>
+</div>
+<div id="i-used-pivot-longer-to-tidy-the-three-data-frames-by-giving-each-variable-a-column.-i-renamed-them-to-indicate-thier-unique-variable." class="section level2">
+<h2>I used pivot longer to tidy the three data frames by giving each variable a column. I renamed them to indicate thier unique variable.</h2>
+<pre class="r"><code>first &lt;- left_join(life, sugar) </code></pre>
+<pre><code>## Joining, by = c(&quot;country&quot;, &quot;year&quot;)</code></pre>
+<pre><code>## Warning: Column `country` joining factors with different levels, coercing to
+## character vector</code></pre>
+<pre class="r"><code>nutri &lt;-left_join(first, calories) </code></pre>
+<pre><code>## Joining, by = c(&quot;country&quot;, &quot;year&quot;)</code></pre>
+<pre><code>## Warning: Column `country` joining character vector and factor, coercing into
+## character vector</code></pre>
+<pre class="r"><code>nutri &lt;- nutri %&gt;% na.omit() </code></pre>
+</div>
+<div id="i-used-left-join-to-keep-all-data-from-the-biggest-datasetlife.-then-i-added-the-calories-and-sugar-data-frames.-no-data-was-lost-in-merging-the-datasets.-i-then-dropped-the-rows-which-contained-years-not-in-all-three-of-the-orignial-datasets.-a-potential-problem-with-this-is-losing-information-about-life-expectency-for-years-not-inluded-in-sugar-and-calories.-the-last-line-removes-rows-with-nas.-i-used-this-to-insure-each-country-and-year-had-information-collected-on-grams-of-sugar-and-calories-consumed." class="section level2">
+<h2>I used left join to keep all data from the biggest dataset,“life”. Then I added the “calories” and “sugar” data frames. No data was lost in merging the datasets. I then dropped the rows which contained years not in all three of the orignial datasets. A potential problem with this is losing information about life expectency for years not inluded in “sugar” and “calories”. The last line removes rows with NA’s. I used this to insure each country and year had information collected on grams of sugar and calories consumed.</h2>
+<pre class="r"><code>##These find summary statistics for the dataset based on the three numeric variables
+
+nutri %&gt;% summarize(mean(life.expectency)) %&gt;% glimpse() </code></pre>
+<pre><code>## Observations: 1
+## Variables: 1
+## $ `mean(life.expectency)` &lt;dbl&gt; 64.65618</code></pre>
+<pre class="r"><code>nutri %&gt;% summarize(sd(calories)) %&gt;% glimpse() </code></pre>
+<pre><code>## Observations: 1
+## Variables: 1
+## $ `sd(calories)` &lt;dbl&gt; 514.5867</code></pre>
+<pre class="r"><code>nutri %&gt;% summarize(max(life.expectency)) %&gt;% glimpse() </code></pre>
+<pre><code>## Observations: 1
+## Variables: 1
+## $ `max(life.expectency)` &lt;dbl&gt; 83.4</code></pre>
+<pre class="r"><code>nutri %&gt;% summarize(var(calories)) %&gt;% glimpse() </code></pre>
+<pre><code>## Observations: 1
+## Variables: 1
+## $ `var(calories)` &lt;dbl&gt; 264799.5</code></pre>
+<pre class="r"><code>nutri %&gt;% summarize(median(life.expectency)) %&gt;% glimpse() </code></pre>
+<pre><code>## Observations: 1
+## Variables: 1
+## $ `median(life.expectency)` &lt;dbl&gt; 66.6</code></pre>
+<pre class="r"><code>nutri %&gt;% group_by(year) %&gt;% summarize(mean(sugar)) %&gt;% glimpse()</code></pre>
+<pre><code>## Observations: 53
+## Variables: 2
+## $ year          &lt;chr&gt; &quot;1961&quot;, &quot;1962&quot;, &quot;1963&quot;, &quot;1964&quot;, &quot;1965&quot;, &quot;1966&quot;, &quot;1967&quot;,…
+## $ `mean(sugar)` &lt;dbl&gt; 69.22239, 71.23551, 71.96180, 70.73266, 71.01432, 70.01…</code></pre>
+<pre class="r"><code>nutri %&gt;% group_by(year) %&gt;% summarize(median(life.expectency)) %&gt;% glimpse()</code></pre>
+<pre><code>## Observations: 53
+## Variables: 2
+## $ year                      &lt;chr&gt; &quot;1961&quot;, &quot;1962&quot;, &quot;1963&quot;, &quot;1964&quot;, &quot;1965&quot;, &quot;19…
+## $ `median(life.expectency)` &lt;dbl&gt; 54.35, 54.85, 55.40, 56.00, 56.30, 57.00, 5…</code></pre>
+<pre class="r"><code>nutri %&gt;% group_by(year) %&gt;% summarize(sd(calories)) %&gt;% glimpse()</code></pre>
+<pre><code>## Observations: 53
+## Variables: 2
+## $ year           &lt;chr&gt; &quot;1961&quot;, &quot;1962&quot;, &quot;1963&quot;, &quot;1964&quot;, &quot;1965&quot;, &quot;1966&quot;, &quot;1967&quot;…
+## $ `sd(calories)` &lt;dbl&gt; 490.9114, 482.7782, 477.8944, 473.2348, 475.4856, 478.…</code></pre>
+<pre class="r"><code>nutri %&gt;% group_by(year) %&gt;% summarize(mean(life.expectency)) %&gt;% glimpse()</code></pre>
+<pre><code>## Observations: 53
+## Variables: 2
+## $ year                    &lt;chr&gt; &quot;1961&quot;, &quot;1962&quot;, &quot;1963&quot;, &quot;1964&quot;, &quot;1965&quot;, &quot;1966…
+## $ `mean(life.expectency)` &lt;dbl&gt; 55.28986, 55.80507, 56.25540, 56.78129, 57.20…</code></pre>
+<pre class="r"><code>nutri %&gt;% group_by(year) %&gt;% group_by(country) %&gt;% summarize(min(life.expectency)) %&gt;%glimpse()</code></pre>
+<pre><code>## Observations: 167
+## Variables: 2
+## $ country                &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;Angola&quot;,…
+## $ `min(life.expectency)` &lt;dbl&gt; 39.4, 63.7, 52.6, 43.0, 63.4, 64.2, 68.7, 71.0…</code></pre>
+</div>
+<div id="for-all-countries-and-all-years-from-1961-2013-the-mean-life-expectancy-is-64.7-years-the-standard-devitation-for-calories-is-515.-the-maximun-life-expectancy-is-83.4-years-which-occured-in-japan-in-2013-the-variance-for-calories-is-264799-and-the-median-life-expectancy-is-66.6-years.-the-next-4-tables-give-statistics-of-all-countries-grouped-by-year.-the-first-table-is-the-mean-sugar-intake-the-second-is-the-standard-deviation-of-calories-and-the-third-is-the-mean-life-expectancy.-the-final-table-gives-the-minimum-life-expectancy-for-every-country-out-of-all-the-years-possible.-for-example-out-of-every-year-data-was-collected-in-afghanistan-the-lowest-the-life-expectancy-ever-was-was-39.4-years." class="section level2">
+<h2>For all countries and all years from 1961-2013, the mean life expectancy is 64.7 years, the standard devitation for calories is 515. the maximun life expectancy is 83.4 years (which occured in Japan in 2013), the variance for calories is 264799, and the median life expectancy is 66.6 years. The next 4 tables give statistics of all countries grouped by year. The first table is the mean sugar intake, the second is the standard deviation of calories, and the third is the mean life expectancy. The final table gives the minimum life expectancy for every country out of all the years possible. For example, out of every year data was collected in Afghanistan, the lowest the life expectancy ever was was 39.4 years.</h2>
+<pre class="r"><code>mean(nutri$sugar, na.rm = TRUE)</code></pre>
+<pre><code>## [1] 76.95025</code></pre>
+<pre class="r"><code>Japan &lt;- nutri %&gt;% filter(country == &quot;Japan&quot;) 
+mean(Japan$sugar, na.rm = TRUE) </code></pre>
+<pre><code>## [1] 81.08868</code></pre>
+</div>
+<div id="the-mean-quantity-of-sugar-consumed-by-all-countries-and-all-years-in-77-grams.-when-the-dataset-is-filtered-to-only-show-japan-the-mean-sugar-intake-rises-to-81.1-grams." class="section level2">
+<h2>The mean quantity of sugar consumed by all countries and all years in 77 grams. When the dataset is filtered to only show Japan, the mean sugar intake rises to 81.1 grams.</h2>
+<pre class="r"><code>sugarcals &lt;- nutri %&gt;% mutate(percent.cals.from.sugar=((sugar*4)/calories)*100)  </code></pre>
+</div>
+<div id="this-table-has-a-new-column-for-the-percentage-of-calories-that-came-from-sugar-on-average-per-day.-for-example-in-new-zealand-in-2012-20.1-of-their-daily-calories-came-from-sugar." class="section level2">
+<h2>This table has a new column for the percentage of calories that came from sugar on average per day. For example, in New Zealand in 2012, 20.1% of their daily calories came from sugar.</h2>
+<pre class="r"><code>nutri %&gt;% group_by(country) %&gt;%summarize(mean_cal=mean(calories, na.rm=T),sd_cal=sd(calories, na.rm=T)) %&gt;% arrange(mean_cal) ##This gives the mean and standard deviation for calories  for each country for all years, then arranges them by highest mean calories to the lowest.</code></pre>
+<pre><code>## # A tibble: 167 x 3
+##    country      mean_cal sd_cal
+##    &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;
+##  1 Myanmar         1770    335.
+##  2 Djibouti        1795.   342.
+##  3 Ethiopia        1858.   197.
+##  4 Angola          1892.   222.
+##  5 Mozambique      1903.   162.
+##  6 Haiti           1905.   101.
+##  7 Chad            1922.   234.
+##  8 Timor-Leste     1938.   164.
+##  9 Burkina Faso    1984.   459.
+## 10 Cambodia        2008.   245.
+## # … with 157 more rows</code></pre>
+<pre class="r"><code>nutri %&gt;% group_by(country) %&gt;%summarize(mean_cal=mean(calories, na.rm=T),sd_cal=sd(calories, na.rm=T)) %&gt;% arrange(sd_cal) ##This gives the mean and standard deviation for calories  for each country for all years, then arranges them by highest standard deveation in calories to the lowest.</code></pre>
+<pre><code>## # A tibble: 167 x 3
+##    country         mean_cal sd_cal
+##    &lt;chr&gt;              &lt;dbl&gt;  &lt;dbl&gt;
+##  1 Belgium            3720    15.2
+##  2 Serbia             2731.   16.4
+##  3 Luxembourg         3506.   21.7
+##  4 Slovak Republic    2865.   63.9
+##  5 Australia          3113.   66.6
+##  6 Switzerland        3421.   67.0
+##  7 Montenegro         3432.   75.2
+##  8 Namibia            2165.   79.6
+##  9 Tajikistan         2024.   79.7
+## 10 South Africa       2854.   80.9
+## # … with 157 more rows</code></pre>
+</div>
+<div id="i-grouped-by-country-then-calcualted-the-mean-calories-and-the-standard-deviation-for-each-country.-this-table-does-not-take-the-year-into-account.-the-country-with-the-smallest-mean-calories-is-myanmar-with-a-mean-of-1770-daily-calories.-the-country-with-the-smallest-standard-deviation-in-daily-calories-is-belgium-with-an-sd-of-15.2." class="section level2">
+<h2>I grouped by country, then calcualted the mean calories and the standard deviation for each country. This table does not take the year into account. The country with the smallest mean calories is Myanmar, with a mean of 1770 daily calories. The country with the smallest standard deviation in daily calories is Belgium, with an sd of 15.2.</h2>
+<pre class="r"><code>nutri %&gt;% select_if(is.numeric) %&gt;% cor%&gt;%as.data.frame%&gt;%rownames_to_column%&gt;%pivot_longer(-1)%&gt;%ggplot(aes(rowname, name, fill=value)) +geom_tile() + geom_text(aes(label=round(value,3)))+xlab(&quot;&quot;)+ylab(&quot;&quot;)+scale_fill_gradient2(low=&quot;#C39BD3&quot;, high=&quot;#48C9B0&quot;, midpoint=.8) +ggtitle(&quot;Correlation Heatmap&quot;) ##This makes the correlation heatmap below, which compares the three numeric variables to one another. </code></pre>
+<p><img src="../project1MD-3_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="this-heatmap-shows-correlations-between-the-numeric-variables-sugar-calories-and-life.expectancy.-the-ones-down-the-diagnal-in-mint-are-compairing-variables-to-themselves-so-they-can-be-ignored.-the-light-violet-is-the-next-most-positivley-correlated-at-0.724-and-is-for-life.expectancy-and-calories.-the-correlation-between-sugar-and-life-expectancy-is-0.592-and-the-correlation-between-sugar-and-calories-is-0.522.-both-of-these-are-positivly-correlated." class="section level2">
+<h2>This heatmap shows correlations between the numeric variables “sugar” , “calories” , and “life.expectancy”. The ones down the diagnal in mint are compairing variables to themselves so they can be ignored. The light violet is the next most positivley correlated at 0.724, and is for life.expectancy and calories. The correlation between sugar and life expectancy is 0.592 and the correlation between sugar and calories is 0.522. Both of these are positivly correlated.</h2>
+<pre class="r"><code>USA &lt;- nutri %&gt;% filter(country == &quot;United States&quot;) %&gt;% filter(year &gt;=2000) ##This makes a new dataset that only contains the United States, from 2000-2013
+
+ggplot(data= USA, aes(x = year, y=sugar, color = calories)) + geom_point(size=4) + scale_color_gradient2(low=&quot;pink&quot;, mid = &quot;#D7BDE2&quot;, midpoint = 3725) +ylab(&quot;Average Daily Sugar Intake (grams)&quot;) + xlab(&quot;Year&quot;) +ggtitle(&quot;USA Sugar Intake&quot;) +scale_y_continuous(breaks = seq(165,195,5)) ##This makes the plot below, which shows USA sugar intake for each year, and is color coded for amount of calories consumed.</code></pre>
+<p><img src="../project1MD-3_files/figure-html/unnamed-chunk-9-1.png" width="672" /> ## This plot shows the average daily sugar intake from years 2000-2013 in the United States. The points are colored to represnt the amount of average daily calories consumed. The average sugar intake and calories spiked from around 2002-2006. In 2009 both sugar and calories dropped to their lowest values for these years. Amount of sugar and daily calories seem to be related.</p>
+<pre class="r"><code>GB &lt;-nutri %&gt;% filter(year &lt;=1976) %&gt;% group_by(year) ##This makes a new dataset for years between 1961-1976. It is grouped by year. 
+
+
+  
+  
+  
+GB %&gt;% group_by(year,life.expectency) %&gt;% summarize(mean_cal=mean(calories, na.rm=T)) %&gt;% ggplot(aes(life.expectency,mean_cal))+geom_area(stat=&quot;identity&quot;)+facet_wrap(~year) +ylab(&quot;Average Daily Calories&quot;) + xlab(&quot;Average Life Expectancy&quot;) +ggtitle(&quot;Life Expectancy verses Daily Calorie Intake&quot;) +theme_test() ##This makes the plot below, which shows one graph for each year between 1961-1976. The plots compare daily calories and life expectancy.</code></pre>
+<p><img src="../project1MD-3_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+<div id="in-this-plot-the-years-1961-1976-are-used-to-compare-the-amount-of-average-daily-calories-and-life-expectancy-for-all-countries.-there-seems-to-be-a-relationship-between-calories-and-extended-life-expectancy.-over-the-decade-the-amount-of-daily-calories-and-life-expectancy-stayed-relativly-constant." class="section level2">
+<h2>In this plot the years 1961-1976 are used to compare the amount of average daily calories and life expectancy for all countries. There seems to be a relationship between calories and extended life expectancy. Over the decade the amount of daily calories and life expectancy stayed relativly constant.</h2>
+<pre class="r"><code>library(cluster)
+library(GGally)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;GGally&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     nasa</code></pre>
+<pre class="r"><code>nochr &lt;- nutri %&gt;% select(-country,-year) ##This makes a dataset that is only numeric variable
+
+
+#sil_width&lt;-vector()
+#for(i in 2:10){
+#pam_fit &lt;- nochr%&gt;%pam(i)
+#sil_width[i] &lt;- pam_fit$silinfo$avg.width
+#}
+#ggplot()+geom_line(aes(x=1:10,y=sil_width))+scale_x_continuous(name=&quot;k&quot;,breaks=1:10) ##This is to choose a number of clusters
+
+
+
+
+
+
+pamnutri &lt;- nochr %&gt;% pam(2) ##This is pam for 2 clusters
+
+
+nochr %&gt;% mutate(cluster=as.factor(pamnutri$clustering)) %&gt;% 
+ggpairs(columns = 1:3 , aes(color=cluster)) ##This makes the plots </code></pre>
+<p><img src="../project1MD-3_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<pre class="r"><code>final&lt;-nochr%&gt;%mutate(cluster=as.factor(pamnutri$clustering)) %&gt;%
+group_by(cluster) %&gt;% summarize_if(is.numeric,mean,na.rm=T) #This makes a dataset with the cluster avergaes for the three variables 
+  
+  
+
+pamnutri$silinfo$avg.width ##This tests how good the cluster solution is </code></pre>
+<pre><code>## [1] 0.6117239</code></pre>
+</div>
+<div id="i-first-made-a-dataset-containing-on-the-numeric-variables-sugar-life.expectany-and-calories.-i-used-silhouette-and-decided-on-2-clusters.the-resulting-plots-indicate-that-the-variables-with-the-strongest-correlation-are-calories-and-life-expectancy-with-a-correlation-of-0.724.-sugar-has-a-correlation-of-0.522-with-daily-calories-and-0.592-with-life-expectancy.-for-cluster-1-the-average-life-expectancy-is-72.2-years-the-average-sugar-intake-is-106.1-grams-and-the-average-daily-caloric-intake-is-3068.-for-cluster-2-the-average-life-expectancy-is-59.2-years-the-average-sugar-intake-is-55.6-grams-and-the-average-daily-caloric-intake-is-2181.-the-average-silhouette-width-is-0.612-which-means-a-reasonable-structure-has-been-found." class="section level2">
+<h2>I first made a dataset containing on the numeric variables: “sugar”, “life.expectany”, and “calories.” I used silhouette and decided on 2 clusters.The resulting plots indicate that the variables with the strongest correlation are calories and life expectancy with a correlation of 0.724. Sugar has a correlation of 0.522 with daily calories and 0.592 with life expectancy. For cluster 1, the average life expectancy is 72.2 years, the average sugar intake is 106.1 grams, and the average daily caloric intake is 3068. For cluster 2 the average life expectancy is 59.2 years, the average sugar intake is 55.6 grams, and the average daily caloric intake is 2181. The average silhouette width is 0.612, which means a reasonable structure has been found.</h2>
+</div>
+
+              <hr>
+              <div class="related-posts">
+                <h5>Related Posts</h5>
+                
+              </div>
+            </div>
+          </div>
+          <hr>
+        <div class="disqus">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+
+    (function() {
+      
+      
+      if (window.location.hostname == "localhost")
+        return;
+
+      var disqus_shortname = '';
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+        </div>
+      </div>
+      
+    </div>
+
+    
+    <footer>
+  <div id="footer">
+    <div class="container">
+      <p class="text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io/">Hugo</a> and
+      <a href="http://www.github.com/nurlansu/hugo-sustain/">sustain</a> with ♥</p>
+    </div>
+  </div>
+</footer>
+<div class="footer"></div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="../js/docs.min.js"></script>
+<script src="../js/main.js"></script>
+
+<script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+
+    
+  </body>
+</html>

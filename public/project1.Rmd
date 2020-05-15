@@ -1,0 +1,225 @@
+---
+title: "Project 1"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+
+
+##I selected three datasets from Gapminder. The first dataset, “calories” gives the average daily caloric intake of an adult, per country and per year. The dataset “sugar” gives the average quantity of sugar and sweeteners eaten per day (in grams), per country and per year. The third dataset, “life” gives the average life expectancy, per country and per year. These datasets were interesting to me because I am interested in nutrition. I would like to see if there is a relationship between average calories and sugar intake, and between sugar intake and average life expectancy. I am also interested to see how countries compare to one another on all three variables. 
+
+
+```{r}
+
+library(tidyverse)
+library(dplyr)
+
+calories <- read.csv("food_supply_kilocalories_per_person_and_day.csv", check.names = FALSE)
+
+
+sugar <- read.csv("sugar_per_person_g_per_day.csv", check.names = FALSE)
+
+
+
+life <- read.csv("life_expectancy_years.csv", check.names = FALSE)
+
+
+```
+
+
+```{r}
+calories <- calories %>% pivot_longer(c("1961":"2013"), names_to="year", values_to="calories")
+
+sugar<- sugar %>% pivot_longer(c("1961":"2013"), names_to="year", values_to="sugar")
+
+life <- life %>% pivot_longer(c("1800":"2018"), names_to = "year", values_to = "life.expectency")
+
+```
+
+
+##I used pivot longer to tidy the three data frames by giving each variable a column. I renamed them to indicate thier unique variable. 
+
+
+
+```{r}
+first <- left_join(life, sugar) 
+
+nutri <-left_join(first, calories) 
+
+nutri <- nutri %>% na.omit() 
+
+```
+
+##I used left join to keep all data from the biggest dataset,"life". Then I added the "calories" and "sugar" data frames. No data was lost in merging the datasets. I then dropped the rows which contained years not in all three of the orignial datasets. A potential problem with this is losing information about life expectency for years not inluded in "sugar" and "calories". The last line removes rows with NA's. I used this to insure each country and year had information collected on grams of sugar and calories consumed. 
+
+
+```{r}
+
+
+##These find summary statistics for the dataset based on the three numeric variables
+
+nutri %>% summarize(mean(life.expectency)) %>% glimpse() 
+
+nutri %>% summarize(sd(calories)) %>% glimpse() 
+
+nutri %>% summarize(max(life.expectency)) %>% glimpse() 
+
+nutri %>% summarize(var(calories)) %>% glimpse() 
+
+nutri %>% summarize(median(life.expectency)) %>% glimpse() 
+
+nutri %>% group_by(year) %>% summarize(mean(sugar)) %>% glimpse()
+
+nutri %>% group_by(year) %>% summarize(median(life.expectency)) %>% glimpse()
+
+nutri %>% group_by(year) %>% summarize(sd(calories)) %>% glimpse()
+
+nutri %>% group_by(year) %>% summarize(mean(life.expectency)) %>% glimpse()
+
+nutri %>% group_by(year) %>% group_by(country) %>% summarize(min(life.expectency)) %>%glimpse()
+
+```
+## For all countries and all years from 1961-2013, the mean life expectancy is 64.7 years, the standard devitation for calories is 515. the maximun life expectancy is 83.4 years (which occured in Japan in 2013), the variance for calories is 264799, and the median life expectancy is 66.6 years. The next 4 tables give statistics of all countries grouped by year. The first table is the mean sugar intake, the second is the standard deviation of calories, and the third is the mean life expectancy. The final table gives the minimum life expectancy for every country out of all the years possible. For example, out of every year data was collected in Afghanistan, the lowest the life expectancy ever was was 39.4 years. 
+
+```{r}
+
+mean(nutri$sugar, na.rm = TRUE)
+Japan <- nutri %>% filter(country == "Japan") 
+mean(Japan$sugar, na.rm = TRUE) 
+
+
+
+```
+
+## The mean quantity of sugar consumed by all countries and all years in 77 grams. When the dataset is filtered to only show Japan, the mean sugar intake rises to 81.1 grams. 
+
+
+
+```{r}
+
+
+sugarcals <- nutri %>% mutate(percent.cals.from.sugar=((sugar*4)/calories)*100)  
+
+
+```
+
+##This table has a new column for the percentage of calories that came from sugar on average per day. For example, in New Zealand in 2012, 20.1% of their daily calories came from sugar.
+
+
+```{r}
+nutri %>% group_by(country) %>%summarize(mean_cal=mean(calories, na.rm=T),sd_cal=sd(calories, na.rm=T)) %>% arrange(mean_cal) ##This gives the mean and standard deviation for calories  for each country for all years, then arranges them by highest mean calories to the lowest.
+
+nutri %>% group_by(country) %>%summarize(mean_cal=mean(calories, na.rm=T),sd_cal=sd(calories, na.rm=T)) %>% arrange(sd_cal) ##This gives the mean and standard deviation for calories  for each country for all years, then arranges them by highest standard deveation in calories to the lowest.
+
+```
+## I grouped by country, then calcualted the mean calories and the standard deviation for each country. This table does not take the year into account. The country with the smallest mean calories is Myanmar, with a mean of 1770 daily calories. The country with the smallest standard deviation in daily calories is Belgium, with an sd of 15.2. 
+
+
+
+```{r}
+
+nutri %>% select_if(is.numeric) %>% cor%>%as.data.frame%>%rownames_to_column%>%pivot_longer(-1)%>%ggplot(aes(rowname, name, fill=value)) +geom_tile() + geom_text(aes(label=round(value,3)))+xlab("")+ylab("")+scale_fill_gradient2(low="#C39BD3", high="#48C9B0", midpoint=.8) +ggtitle("Correlation Heatmap") ##This makes the correlation heatmap below, which compares the three numeric variables to one another. 
+
+```
+
+## This heatmap shows correlations between the numeric variables "sugar" , "calories" , and "life.expectancy". The ones down the diagnal in mint are compairing variables to themselves so they can be ignored. The light violet is the next most positivley correlated at 0.724, and is for life.expectancy and calories. The correlation between sugar and life expectancy is 0.592 and the correlation between sugar and calories is 0.522. Both of these are positivly correlated. 
+
+
+```{r}
+
+USA <- nutri %>% filter(country == "United States") %>% filter(year >=2000) ##This makes a new dataset that only contains the United States, from 2000-2013
+
+ggplot(data= USA, aes(x = year, y=sugar, color = calories)) + geom_point(size=4) + scale_color_gradient2(low="pink", mid = "#D7BDE2", midpoint = 3725) +ylab("Average Daily Sugar Intake (grams)") + xlab("Year") +ggtitle("USA Sugar Intake") +scale_y_continuous(breaks = seq(165,195,5)) ##This makes the plot below, which shows USA sugar intake for each year, and is color coded for amount of calories consumed.
+
+
+
+
+
+```
+## This plot shows the average daily sugar intake from years 2000-2013 in the United States. The points are colored to represnt the amount of average daily calories consumed. The average sugar intake and calories spiked from around 2002-2006. In 2009 both sugar and calories dropped to their lowest values for these years. Amount of sugar and daily calories seem to be related. 
+```{r}
+
+
+GB <-nutri %>% filter(year <=1976) %>% group_by(year) ##This makes a new dataset for years between 1961-1976. It is grouped by year. 
+
+
+  
+  
+  
+GB %>% group_by(year,life.expectency) %>% summarize(mean_cal=mean(calories, na.rm=T)) %>% ggplot(aes(life.expectency,mean_cal))+geom_area(stat="identity")+facet_wrap(~year) +ylab("Average Daily Calories") + xlab("Average Life Expectancy") +ggtitle("Life Expectancy verses Daily Calorie Intake") +theme_test() ##This makes the plot below, which shows one graph for each year between 1961-1976. The plots compare daily calories and life expectancy.
+
+
+
+
+
+```
+
+
+##In this plot the years 1961-1976 are used to compare the amount of average daily calories and life expectancy for all countries. There seems to be a relationship between calories and extended life expectancy. Over the decade the amount of daily calories and life expectancy stayed relativly constant. 
+
+
+
+
+
+
+
+
+
+```{r}
+library(cluster)
+library(GGally)
+
+nochr <- nutri %>% select(-country,-year) ##This makes a dataset that is only numeric variable
+
+
+#sil_width<-vector()
+#for(i in 2:10){
+#pam_fit <- nochr%>%pam(i)
+#sil_width[i] <- pam_fit$silinfo$avg.width
+#}
+#ggplot()+geom_line(aes(x=1:10,y=sil_width))+scale_x_continuous(name="k",breaks=1:10) ##This is to choose a number of clusters
+
+
+
+
+
+
+pamnutri <- nochr %>% pam(2) ##This is pam for 2 clusters
+
+
+nochr %>% mutate(cluster=as.factor(pamnutri$clustering)) %>% 
+ggpairs(columns = 1:3 , aes(color=cluster)) ##This makes the plots 
+
+
+final<-nochr%>%mutate(cluster=as.factor(pamnutri$clustering)) %>%
+group_by(cluster) %>% summarize_if(is.numeric,mean,na.rm=T) #This makes a dataset with the cluster avergaes for the three variables 
+  
+  
+
+pamnutri$silinfo$avg.width ##This tests how good the cluster solution is 
+
+
+
+```
+
+
+## I first made a dataset containing on the numeric variables: "sugar", "life.expectany", and "calories." I used silhouette and decided on 2 clusters.The resulting plots indicate that the variables with the strongest correlation are calories and life expectancy with a correlation of 0.724. Sugar has a correlation of 0.522 with daily calories and 0.592 with life expectancy. For cluster 1, the average life expectancy is 72.2 years, the average sugar intake is 106.1 grams, and the average daily caloric intake is 3068. For cluster 2 the average life expectancy is 59.2 years, the average sugar intake is 55.6 grams, and the average daily caloric intake is 2181. The average silhouette width is 0.612, which means a reasonable structure has been found. 
+
+
+
+
+

@@ -1,0 +1,372 @@
+
+---
+title: "Project2"
+author: "Kristin Newmaster"
+date: "5/1/2020"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+  word_document: default
+---
+
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE, fig.align = "center", warning = F, message = F,
+tidy=TRUE, tidy.opts=list(width.cutoff=60), R.options=list(max.print=100))
+```
+
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+#The first dataset, “calories” gives the average daily caloric intake of an adult, per country and per year. The dataset “sugar” gives the average quantity of sugar and sweeteners eaten per day (in grams), per country and per year. The third dataset, “life” gives the average life expectancy, per country and per year. After combining the datasets and tidying, there are 7958 total observations. After combining the datasets I added a binary variable y which shows whether a person died before or after the age of 60. 
+
+```{r}
+library(dplyr)
+library(tidyverse)
+
+
+calories <- read.csv("food_supply_kilocalories_per_person_and_day.csv", check.names = FALSE)
+                     sugar <- read.csv("sugar_per_person_g_per_day.csv", check.names = FALSE)
+                     life <- read.csv("life_expectancy_years.csv", check.names = FALSE)
+
+                     
+ calories <- calories %>% pivot_longer(c("1961":"2013"), names_to="year", values_to="calories")
+ sugar<- sugar %>% pivot_longer(c("1961":"2013"), names_to="year", values_to="sugar")
+ life <- life %>% pivot_longer(c("1800":"2018"), names_to = "year", values_to = "life.expectency")
+
+ first <- left_join(life, sugar)
+
+ nutri <-left_join(first, calories)
+
+ nutri <- nutri %>% na.omit()
+
+
+  
+
+```
+
+##The above code is to create the dataset
+
+
+
+```{r cars}
+
+library(dplyr)
+
+
+
+nutriyle<-nutri%>%mutate(y=ifelse(life.expectency >"60",1,0))
+nutriyy <-nutriyle%>%mutate(year90=ifelse(year >"1990",1,0))
+
+
+manov<-manova(cbind(sugar,calories, life.expectency)~country, data=nutriyy)
+
+
+summary(manov)
+
+
+
+summary.aov(manov)
+
+
+nutrcal <-nutriyy%>%mutate(cal.level=case_when(calories <=2150~"low", calories<=2990 ~"mid", calories <=3830~"high"))
+
+
+
+pairwise.t.test(nutrcal$sugar, nutrcal$cal.level, p.adj = "none")
+pairwise.t.test(nutrcal$life.expectency, nutrcal$cal.level, p.adj = "none")
+
+
+```
+
+#1. Manova: All 3 variables show significant differneces in their means (p-vaule = 2e-16)
+#Univariate ANOVA: Both significant: for sugar and calories, at least one country differs.
+#I ran two t tests, (1-.95^2) =.0975 = Probability of at least one type 1 error. After Bonferroni correction alpha prime= .025. All still have significant differneces. 
+#The assumption of random samples may be disrupted by the removal of NAs. Multivariate normality is not likely to be met and each group doesn't seem to be normally distrubuted. There are some extreme outliers. There doesn't seem to be multicollinearity (DVs arern't too correlated)   
+
+
+```{r pressure}
+
+library(dplyr)
+
+nutrcal%>%group_by(y)%>%summarize(s=sd(sugar))%>%summarize(diff(s)) 
+
+
+library(tidyverse)
+set.seed(1234) 
+rand_dist<-vector() 
+
+for (i in 1:5000){
+new <-data.frame(sugar=sample(nutrcal$sugar), y=nutrcal$y)
+rand_dist[i] <-sd(new[new$y== "0",]$sugar)-
+sd(new[new$y=="1",]$sugar)}
+
+
+mean(rand_dist > 22 | rand_dist < -22) 
+
+{hist(rand_dist,main="",ylab="", xlim=c(-25,25)) ; abline(v = 22,col="red"); abline(v = -22,col="red") }
+
+
+
+
+```
+
+#2. 
+#H0:The sd of the group with life expectency under 60 is the same as for the group with life expectency above 60. 
+
+#H1:The sd of the group with life expectency under 60 is different from the group with life expectency above 60. 
+
+#p-vaule of 0. Reject the null (H0). Sd sugar intake in grams is not the same for people with life expectancies below 60 and people with life epectancies above 60.
+
+
+
+```{r}
+library(sandwich);library(lmtest)
+nutrcalcenter <-nutrcal%>%mutate(sug.cent=scale(nutrcal$sugar, center=TRUE, scale=FALSE )) 
+
+
+fit <-lm(life.expectency~ sug.cent* cal.level, data=nutrcalcenter); summary(fit)
+
+
+nutrcalcenter %>% ggplot(aes(x=sug.cent, y=life.expectency, color = cal.level))+ scale_x_log10() +
+  geom_smooth(method="lm", se=T) +  geom_point() 
+
+nutrcalcenter %>% ggplot(aes(x=sug.cent, y=life.expectency, color = cal.level))+ scale_x_log10() +
+  geom_smooth(method="lm", se=T)
+
+resids<-fit$residuals
+fitvals<-fit$fitted.values 
+
+ggplot()+geom_point(aes(fitvals,resids))+geom_hline(yintercept=0, col="red") + coord_trans(x="log2")
+
+bptest(fit) 
+
+
+summary(fit)$coef[,1:2] ##uncorrected SEs
+coeftest(fit,vcov=vcovHC(fit)) 
+
+
+ggplot()+geom_histogram(aes(resids),bins=200) 
+
+
+
+ks.test(resids, "pnorm", sd=sd(resids))
+
+summary(fit)
+
+
+dat<-data.frame(x=nutrcalcenter$sug.cent, y1=nutrcalcenter$life.expectency) 
+breaks <- seq(min(dat$x), max(dat$x), len=8)
+ggplot(dat, aes(x, y1)) + geom_point(alpha=.3) + theme_bw()+ geom_vline(xintercept=breaks, lty=2,color='gray50')
+
+
+
+```
+#3. The intercept is  72.67080. The predicted life expectency =  72.67080 + 0.04526(sugar, mean centered). For every one unit increase in sugar(centered), there is a 0.04526 increase in life expectency on average. 
+
+#For people with average sugar intake, people eating a "low" number of calories have a predicted life expectency that is 16.19288 lower than the "high" calorie people. 
+
+#For people with an average sugar intake, people eating a "mid" number of calories have a predicted life expectency that is 7.73457 lower than the "high" calorie people.
+
+#-0.00115 is the years of life expectency accounted for by the association of sugar(centered) and the calorie level "low"
+
+#0.04748 is the years of life expectency accounted for by the association of sugar(centered) and the calorie level "mid" 
+
+#bptest p vaule (2e-16) is <.05 so reject the null hypothesis of homoskedasticity.
+
+
+#robust SE p vaule <.05 for all excpet sug.cent:cal.levellow, the interaction of sugar(centered) and calorie level "low". the p vaule is 0.9537. The SEs for intercept, sug,cent and cal.levelmid decreased when corrected, the rest increased. 
+
+#R^2 and adjusted R^2 (.549) is the proportion of variation in the response variable explained by the overall model. 
+
+#The assumptions of linearity, normality, and homoskedasticity are not met according to the plots.
+
+
+
+```{r}
+
+boot <-sample_frac(nutrcalcenter, replace = T)
+
+samp_distn <- replicate(5000, {
+boot <-sample_frac(nutrcalcenter, replace = T)
+fit <-lm(life.expectency~ sug.cent* cal.level, data=boot)
+coef(fit)
+})
+
+samp_distn %>% t %>% as.data.frame %>% summarize_all(sd)
+  
+
+```
+#4.                   
+                    uncorrected SEs   robust SEs   bootstrap SEs           
+(Intercept)                0.25322    0.21474      0.209
+sug.cent                   0.00548    0.00431      0.0042
+cal.levellow               0.31140    0.78001      0.813
+cal.levelmid               0.27536    0.24290      0.235  
+sug.cent:cal.levellow      0.00613    0.01990      0.0209
+sug.cent:cal.levelmid      0.00594    0.01582      0.0137
+
+#None of the SEs changed significantly 
+
+
+
+```{r}
+fitt<-glm(y ~ sugar + calories, data=nutrcalcenter, family="binomial")
+
+
+
+summary(fitt) ##interpret 
+
+nutracallog <- nutrcalcenter%>%mutate(logit=predict(fitt, type="link"))
+nutlog <-nutracallog%>%mutate(y=ifelse(life.expectency >"60",1,0))
+
+
+probs <- predict(fitt, type="response")
+
+class_diag <- function(probs,truth)
+class_diag(probs, nutlog$y) 
+
+
+table(predict=as.numeric(probs>.5),truth=nutlog$y)%>%addmargins     
+
+4784/5374
+1955/2584
+4784/5413
+
+(1955+4784)/7958
+
+nutrcalcenter$logit <- predict(fitt, type="link")
+
+
+
+
+
+
+fitt<-glm(y~sugar+calories, data=nutlog, family="binomial")
+nutlog$prob <- predict(fitt, type="response")
+nutlog$y <- as.factor(nutlog$y)
+
+nutlog$logit <-predict(fitt,type="link")
+
+nutlog%>%ggplot(aes(logit, color=y, fill=y))+geom_density(alpha=.4)+ theme(legend.position=c(.85,.85))+geom_vline(xintercept=0)+xlab("predictor(logit)")+
+  geom_rug(aes(logit,color=y))
+
+
+
+
+library(plotROC) 
+
+
+nutlog2 <-nutracallog%>%mutate(y=ifelse(life.expectency >"60",1,0))
+fitt2<-glm(y~sugar+calories, data=nutlog2, family="binomial")
+preprobs <- predict(fitt2, type="response")
+
+
+ROCplot<-ggplot(nutlog2)+geom_roc(aes(d=y,m=preprobs), n.cuts=0)
+ROCplot
+
+calc_auc(ROCplot)
+
+
+class_diag <- function(probs,truth){
+#CONFUSION MATRIX: CALCULATE ACCURACY, TPR, TNR, PPV
+tab<-table(factor(probs>.5,levels=c("FALSE","TRUE")),truth)
+acc=sum(diag(tab))/sum(tab)
+sens=tab[2,2]/colSums(tab)[2]
+spec=tab[1,1]/colSums(tab)[1]
+ppv=tab[2,2]/rowSums(tab)[2]
+if(is.numeric(truth)==FALSE & is.logical(truth)==FALSE) truth<-as.numeric(truth)-1
+#CALCULATE EXACT AUC
+ord<-order(probs, decreasing=TRUE)
+probs <- probs[ord]; truth <- truth[ord]
+TPR=cumsum(truth)/max(1,sum(truth))
+
+FPR=cumsum(!truth)/max(1,sum(!truth))
+dup<-c(probs[-1]>=probs[-length(probs)], FALSE)
+TPR<-c(0,TPR[!dup],1); FPR<-c(0,FPR[!dup],1)
+n <- length(TPR)
+auc<- sum( ((TPR[-1]+TPR[-n])/2) * (FPR[-1]-FPR[-n]) )
+data.frame(acc,sens,spec,ppv,auc)
+} 
+
+k=10
+
+lifedata <- nutlog2 %>% sample_frac #put rows of dataset in random order
+folds <- ntile(1:nrow(lifedata),n=10) #create fold labels
+
+diags<-NULL
+for(i in 1:k){
+train <- lifedata[folds!=i,] #create training set (all but fold i)
+test <- lifedata[folds==i,] #create test set (just fold i)
+truth <- test$y #save truth labels from fold i
+  
+fittt3 <- glm(y~sugar + calories, data=train, family="binomial")
+probs <- predict(fittt3, newdata=test, type="response")
+  
+diags<-rbind(diags,class_diag(probs,truth))
+}
+
+summarize_all(diags,mean)
+
+
+
+
+```
+#5. The AUC is .662. There are 1300 false positives and 1849 are false positives. The sensitivy (TPR) is .89. 
+#The specificity (TNR) is .757. The Precision (PPV) is .884. The accuracy is .847. 
+#In the predictor/density curve y=0 for life expectency <60 and y=1 for life expectency >60. 
+#The ROC curve is the visualization of the trade-off between sensitivity and specificity. The AUC of .915 (great) summarizes both in a single vaule. 
+#The output from the CV model is ~identical to the previous model. The TPR is .89, the TNR is .756, the PPV is .884, the AUC is .914 and the accurary is .847. 
+
+
+
+
+
+```{r}
+library(glmnet)
+
+
+
+y<-as.matrix(nutlog2$y) #grab response
+x<-model.matrix(y~sugar + calories ,data=nutlog2)[,-1] #grab predictors
+head(x)
+
+cv <- cv.glmnet(x,y) 
+
+
+
+cv<-cv.glmnet(x,y,family="binomial")
+lasso<-glmnet(x,y,family="binomial",lambda=cv$lambda.1se)
+
+coef(lasso)         
+
+
+
+k=10
+
+lifedata <- nutlog2 %>% sample_frac #put rows of dataset in random order
+folds <- ntile(1:nrow(lifedata),n=10) #create fold labels
+
+diags<-NULL
+for(i in 1:k){
+train <- lifedata[folds!=i,] #create training set (all but fold i)
+test <- lifedata[folds==i,] #create test set (just fold i)
+truth <- test$y #save truth labels from fold i
+  
+fit4 <- glm(y~sugar + calories, data=train, family="binomial")
+probs <- predict(fit4, newdata=test, type="response")
+  
+diags<-rbind(diags,class_diag(probs,truth))
+}
+
+summarize_all(diags,mean)
+
+
+
+```
+#6. Sugar and calories are the variables retained in the LASSO regression.
+#Since sugar and calories are the variables I used previously the output is nearly identical. 
+
+
