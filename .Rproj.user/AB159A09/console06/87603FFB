@@ -1,3 +1,229 @@
 df]0;/stor/home/kn8928/website_kl]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ dfd[K[K[Kgit i[K[K[K[K[Kgit init[K[K[K[Kinit
 Initialized empty Git repository in /stor/home/kn8928/website_kl/.git/
 ]0;/stor/home/kn8928/website_kl]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ git add .
+]0;/stor/home/kn8928/website_kl]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ git commit -m "first commit"
+[master (root-commit) efc7f55] first commit
+ Committer: Kristin Newmaster <kn8928@educcomp01.ccbb.utexas.edu>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 195 files changed, 13558 insertions(+)
+ create mode 100644 .RData
+ create mode 100644 .Rhistory
+ create mode 100644 .Rproj.user/AB159A09/build_options
+ create mode 100644 .Rproj.user/AB159A09/console06/87603FFB
+ create mode 100644 .Rproj.user/AB159A09/console06/87603FFB.env
+ create mode 100644 .Rproj.user/AB159A09/console06/INDEX001
+ create mode 100644 .Rproj.user/AB159A09/pcs/files-pane.pper
+ create mode 100644 .Rproj.user/AB159A09/pcs/source-pane.pper
+ create mode 100644 .Rproj.user/AB159A09/pcs/windowlayoutstate.pper
+ create mode 100644 .Rproj.user/AB159A09/pcs/workbench-pane.pper
+ create mode 100644 .Rproj.user/AB159A09/persistent-state
+ create mode 100644 .Rproj.user/AB159A09/saved_source_markers
+ create mode 100644 .Rproj.user/AB159A09/sources/prop/2FB0DD3B
+ create mode 100644 .Rproj.user/AB159A09/sources/prop/31B8E296
+ create mode 100644 .Rproj.user/AB159A09/sources/prop/4BAC1555
+ create mode 100644 .Rproj.user/AB159A09/sources/prop/667E458F
+ create mode 100644 .Rproj.user/AB159A09/sources/prop/7CD2273E
+ create mode 100644 .Rproj.user/AB159A09/sources/prop/9916A6F8
+ create mode 100644 .Rproj.user/AB159A09/sources/prop/B67ACE3E
+ create mode 100644 .Rproj.user/AB159A09/sources/prop/DA06018F
+ create mode 100644 .Rproj.user/AB159A09/sources/prop/E19765E5
+ create mode 100644 .Rproj.user/AB159A09/sources/prop/F1CB1A79
+ create mode 100644 .Rproj.user/AB159A09/sources/prop/FBB9C10F
+ create mode 100644 .Rproj.user/AB159A09/sources/prop/INDEX
+ create mode 100644 .Rproj.user/AB159A09/sources/s-1076ff87/27DD2420
+ create mode 100644 .Rproj.user/AB159A09/sources/s-1076ff87/27DD2420-contents
+ create mode 100644 .Rproj.user/AB159A09/sources/s-1076ff87/5FA6B1B4
+ create mode 100644 .Rproj.user/AB159A09/sources/s-1076ff87/5FA6B1B4-contents
+ create mode 100644 .Rproj.user/AB159A09/sources/s-1076ff87/62639CC
+ create mode 100644 .Rproj.user/AB159A09/sources/s-1076ff87/62639CC-contents
+ create mode 100644 .Rproj.user/AB159A09/sources/s-1076ff87/81EA7F6D-contents
+ create mode 100644 .Rproj.user/AB159A09/sources/s-1076ff87/BFD05E0D
+ create mode 100644 .Rproj.user/AB159A09/sources/s-1076ff87/BFD05E0D-contents
+ create mode 100644 .Rproj.user/AB159A09/sources/s-1076ff87/D1286386
+ create mode 100644 .Rproj.user/AB159A09/sources/s-1076ff87/D1286386-contents
+ create mode 100644 .Rproj.user/AB159A09/sources/s-1076ff87/lock_file
+ create mode 100644 .Rproj.user/shared/notebooks/patch-chunk-names
+ create mode 100644 .Rproj.user/shared/notebooks/paths
+ create mode 100644 config.toml
+ create mode 100644 content/food_supply_kilocalories_per_person_and_day.csv
+ create mode 100644 content/life_expectancy_years.csv
+ create mode 100644 content/project1.Rmd
+ create mode 100644 content/project1.html
+ create mode 100644 content/project2.Rmd
+ create mode 100644 content/project2.html
+ create mode 100644 content/projects.md
+ create mode 100644 content/sugar_per_person_g_per_day.csv
+ create mode 100644 index.Rmd
+ create mode 100644 public/404.html
+ create mode 100644 public/Resume compbio.pdf
+ create mode 100644 public/blog/2015-07-23-r-rmarkdown.Rmd
+ create mode 100644 public/blog/2015-07-23-r-rmarkdown/index.html
+ create mode 100644 public/blog/2015-07-23-r-rmarkdown_files/figure-html/pie-1.png
+ create mode 100644 public/blog/creating-a-new-theme/index.html
+ create mode 100644 public/blog/goisforlovers/index.html
+ create mode 100644 public/blog/hugoisforlovers/index.html
+ create mode 100644 public/blog/index.html
+ create mode 100644 public/blog/index.xml
+ create mode 100644 public/blog/migrate-from-jekyll/index.html
+ create mode 100644 public/categories/development/index.html
+ create mode 100644 public/categories/development/index.xml
+ create mode 100644 public/categories/golang/index.html
+ create mode 100644 public/categories/golang/index.xml
+ create mode 100644 public/categories/index.html
+ create mode 100644 public/categories/index.xml
+ create mode 100644 public/categories/projects/index.html
+ create mode 100644 public/categories/projects/index.xml
+ create mode 100644 public/categories/r/index.html
+ create mode 100644 public/categories/r/index.xml
+ create mode 100644 public/css/main.css
+ create mode 100644 public/food_supply_kilocalories_per_person_and_day.csv
+ create mode 100644 public/img/profile.png
+ create mode 100644 public/index.html
+ create mode 100644 public/index.xml
+ create mode 100644 public/js/docs.min.js
+ create mode 100644 public/js/ie10-viewport-bug-workaround.js
+ create mode 100644 public/js/main.js
+ create mode 100644 public/life_expectancy_years.csv
+ create mode 100644 public/project1.Rmd
+ create mode 100644 public/project1/index.html
+ create mode 100644 public/project1MD-3.Rmd
+ create mode 100644 public/project1MD-3_files/figure-html/unnamed-chunk-10-1.png
+ create mode 100644 public/project1MD-3_files/figure-html/unnamed-chunk-11-1.png
+ create mode 100644 public/project1MD-3_files/figure-html/unnamed-chunk-8-1.png
+ create mode 100644 public/project1MD-3_files/figure-html/unnamed-chunk-9-1.png
+ create mode 100644 public/project1_files/figure-html/unnamed-chunk-10-1.png
+ create mode 100644 public/project1_files/figure-html/unnamed-chunk-11-1.png
+ create mode 100644 public/project1_files/figure-html/unnamed-chunk-11-2.png
+ create mode 100644 public/project1_files/figure-html/unnamed-chunk-8-1.png
+ create mode 100644 public/project1_files/figure-html/unnamed-chunk-9-1.png
+ create mode 100644 public/project1md-3/index.html
+ create mode 100644 public/project2-3.Rmd
+ create mode 100644 public/project2-3/index.html
+ create mode 100644 public/project2-3_files/figure-html/pressure-1.png
+ create mode 100644 public/project2-3_files/figure-html/unnamed-chunk-2-1.png
+ create mode 100644 public/project2-3_files/figure-html/unnamed-chunk-2-2.png
+ create mode 100644 public/project2-3_files/figure-html/unnamed-chunk-2-3.png
+ create mode 100644 public/project2-3_files/figure-html/unnamed-chunk-2-4.png
+ create mode 100644 public/project2-3_files/figure-html/unnamed-chunk-2-5.png
+ create mode 100644 public/project2-3_files/figure-html/unnamed-chunk-4-1.png
+ create mode 100644 public/project2-3_files/figure-html/unnamed-chunk-4-2.png
+ create mode 100644 public/project2.Rmd
+ create mode 100644 public/project2/index.html
+ create mode 100644 public/project2_files/figure-html/pressure-1.png
+ create mode 100644 public/project2_files/figure-html/unnamed-chunk-2-1.png
+ create mode 100644 public/project2_files/figure-html/unnamed-chunk-2-2.png
+ create mode 100644 public/project2_files/figure-html/unnamed-chunk-2-3.png
+ create mode 100644 public/project2_files/figure-html/unnamed-chunk-2-4.png
+ create mode 100644 public/project2_files/figure-html/unnamed-chunk-2-5.png
+ create mode 100644 public/project2_files/figure-html/unnamed-chunk-4-1.png
+ create mode 100644 public/project2_files/figure-html/unnamed-chunk-4-2.png
+ create mode 100644 public/projects/index.html
+ create mode 100644 public/resumecompbio.pdf
+ create mode 100644 public/sitemap.xml
+ create mode 100644 public/sugar_per_person_g_per_day.csv
+ create mode 100644 public/tags/development/index.html
+ create mode 100644 public/tags/development/index.xml
+ create mode 100644 public/tags/go/index.html
+ create mode 100644 public/tags/go/index.xml
+ create mode 100644 public/tags/golang/index.html
+ create mode 100644 public/tags/golang/index.xml
+ create mode 100644 public/tags/hugo/index.html
+ create mode 100644 public/tags/hugo/index.xml
+ create mode 100644 public/tags/index.html
+ create mode 100644 public/tags/index.xml
+ create mode 100644 public/tags/plot/index.html
+ create mode 100644 public/tags/plot/index.xml
+ create mode 100644 public/tags/projects/index.html
+ create mode 100644 public/tags/projects/index.xml
+ create mode 100644 public/tags/r-markdown/index.html
+ create mode 100644 public/tags/r-markdown/index.xml
+ create mode 100644 public/tags/regression/index.html
+ create mode 100644 public/tags/regression/index.xml
+ create mode 100644 public/tags/templates/index.html
+ create mode 100644 public/tags/templates/index.xml
+ create mode 100644 public/tags/themes/index.html
+ create mode 100644 public/tags/themes/index.xml
+ create mode 100644 static/blog/2015-07-23-r-rmarkdown_files/figure-html/pie-1.png
+ create mode 100644 static/img/profile.png
+ create mode 100644 static/project1MD-3_files/figure-html/unnamed-chunk-10-1.png
+ create mode 100644 static/project1MD-3_files/figure-html/unnamed-chunk-11-1.png
+ create mode 100644 static/project1MD-3_files/figure-html/unnamed-chunk-8-1.png
+ create mode 100644 static/project1MD-3_files/figure-html/unnamed-chunk-9-1.png
+ create mode 100644 static/project1_files/figure-html/unnamed-chunk-10-1.png
+ create mode 100644 static/project1_files/figure-html/unnamed-chunk-11-1.png
+ create mode 100644 static/project1_files/figure-html/unnamed-chunk-11-2.png
+ create mode 100644 static/project1_files/figure-html/unnamed-chunk-8-1.png
+ create mode 100644 static/project1_files/figure-html/unnamed-chunk-9-1.png
+ create mode 100644 static/project2-3_files/figure-html/pressure-1.png
+ create mode 100644 static/project2-3_files/figure-html/unnamed-chunk-2-1.png
+ create mode 100644 static/project2-3_files/figure-html/unnamed-chunk-2-2.png
+ create mode 100644 static/project2-3_files/figure-html/unnamed-chunk-2-3.png
+ create mode 100644 static/project2-3_files/figure-html/unnamed-chunk-2-4.png
+ create mode 100644 static/project2-3_files/figure-html/unnamed-chunk-2-5.png
+ create mode 100644 static/project2-3_files/figure-html/unnamed-chunk-4-1.png
+ create mode 100644 static/project2-3_files/figure-html/unnamed-chunk-4-2.png
+ create mode 100644 static/project2_files/figure-html/pressure-1.png
+ create mode 100644 static/project2_files/figure-html/unnamed-chunk-2-1.png
+ create mode 100644 static/project2_files/figure-html/unnamed-chunk-2-2.png
+ create mode 100644 static/project2_files/figure-html/unnamed-chunk-2-3.png
+ create mode 100644 static/project2_files/figure-html/unnamed-chunk-2-4.png
+ create mode 100644 static/project2_files/figure-html/unnamed-chunk-2-5.png
+ create mode 100644 static/project2_files/figure-html/unnamed-chunk-4-1.png
+ create mode 100644 static/project2_files/figure-html/unnamed-chunk-4-2.png
+ create mode 100644 static/resumecompbio.pdf
+ create mode 100644 themes/hugo-sustain/LICENSE.md
+ create mode 100644 themes/hugo-sustain/README.md
+ create mode 100644 themes/hugo-sustain/archetypes/default.md
+ create mode 100644 themes/hugo-sustain/exampleSite/config.toml
+ create mode 100644 themes/hugo-sustain/exampleSite/content/blog/creating-a-new-theme.md
+ create mode 100644 themes/hugo-sustain/exampleSite/content/blog/goisforlovers.md
+ create mode 100644 themes/hugo-sustain/exampleSite/content/blog/hugoisforlovers.md
+ create mode 100644 themes/hugo-sustain/exampleSite/content/blog/migrate-from-jekyll.md
+ create mode 100644 themes/hugo-sustain/exampleSite/content/projects.md
+ create mode 100644 themes/hugo-sustain/exampleSite/data/projects.yml
+ create mode 100644 themes/hugo-sustain/exampleSite/static/img/profile.png
+ create mode 100644 themes/hugo-sustain/images/screenshot.png
+ create mode 100644 themes/hugo-sustain/images/tn.png
+ create mode 100644 themes/hugo-sustain/layouts/404.html
+ create mode 100644 themes/hugo-sustain/layouts/_default/list.html
+ create mode 100644 themes/hugo-sustain/layouts/_default/projects.html
+ create mode 100644 themes/hugo-sustain/layouts/_default/single.html
+ create mode 100644 themes/hugo-sustain/layouts/index.html
+ create mode 100644 themes/hugo-sustain/layouts/partials/disqus.html
+ create mode 100644 themes/hugo-sustain/layouts/partials/footer.html
+ create mode 100644 themes/hugo-sustain/layouts/partials/head.html
+ create mode 100644 themes/hugo-sustain/layouts/partials/header.html
+ create mode 100644 themes/hugo-sustain/layouts/partials/js.html
+ create mode 100644 themes/hugo-sustain/layouts/partials/social.html
+ create mode 100644 themes/hugo-sustain/static/css/main.css
+ create mode 100644 themes/hugo-sustain/static/js/docs.min.js
+ create mode 100644 themes/hugo-sustain/static/js/ie10-viewport-bug-workaround.js
+ create mode 100644 themes/hugo-sustain/static/js/main.js
+ create mode 100644 themes/hugo-sustain/theme.toml
+ create mode 100644 website_kl.Rproj
+]0;/stor/home/kn8928/website_kl]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ git remote add origin https://github.com/USERNAME/WEBSITE_REPOSITORY.git #rehttps://githhub.com/kristinlnew/website_kl.git[A[C[Ccommit -m "first commit"[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cremote add origin https://github.com/USERNAME/WEBSITE_REPOSITORY.git #rehttps://githhub.com/kristinlnew/website_kl.git[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://githu[1Pb.com/kristinlnew/website_kl.git[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github[1P.com/kristinlnew/website_kl.git[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.[1Pcom/kristinlnew/website_kl.git[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.c[1Pom/kristinlnew/website_kl.git[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.co[1Pm/kristinlnew/website_kl.git[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com[1P/kristinlnew/website_kl.git[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/[1Pkristinlnew/website_kl.git[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/k[1Pristinlnew/website_kl.git[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/kr[1Pistinlnew/website_kl.git[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/kri[1Pstinlnew/website_kl.git[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/kris[1Ptinlnew/website_kl.git[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/krist[1Pinlnew/website_kl.git[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/kristi[1Pnlnew/website_kl.git[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/kristin[1Plnew/website_kl.git[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/kristinl[1Pnew/website_kl.git[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/kristinln[1Pew/website_kl.git[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/kristinlne[1Pw/website_kl.git[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/kristinlnew[1P/website_kl.git[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/kristinlnew/[1Pwebsite_kl.git[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/kristinlnew/w[1Pebsite_kl.git[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/kristinlnew/we[1Pbsite_kl.git[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/kristinlnew/web[1Psite_kl.git[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/kristinlnew/webs[1Pite_kl.git[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/kristinlnew/websi[1Pte_kl.git[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/kristinlnew/websit[1Pe_kl.git[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/kristinlnew/website[1P_kl.git[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/kristinlnew/website_[1Pkl.git[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/kristinlnew/website_k[1Pl.git[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/kristinlnew/website_kl[1P.git[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/kristinlnew/website_kl.[1Pgit[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/kristinlnew/website_kl.g[1Pit[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/kristinlnew/website_kl.gi[1Pt[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/kristinlnew/website_kl.git[K[A]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chttps://github.com/kristinlnew/website_kl.git [K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1Phttps://github.com/kristinlnew/website_kl.git
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1Phttps://github.com/kristinlnew/website_kl.git[1Phttps://github.com/kristinlnew/website_kl.git[1Phttps://github.com/kristinlnew/website_kl.git[1Phttps://github.com/kristinlnew/website_kl.git[1Phttps://github.com/kristinlnew/website_kl.git[1Phttps://github.com/kristinlnew/website_kl.git[1Phttps://github.com/kristinlnew/website_kl.git[1Pttps://github.com/kristinlnew/website_kl.git[1Phttps://github.com/kristinlnew/website_kl.git[1Phttps://github.com/kristinlnew/website_kl.git[1Phttps://github.com/kristinlnew/website_kl.git[1Phttps://github.com/kristinlnew/website_kl.git[1Phttps://github.com/kristinlnew/website_kl.git[1Phttps://github.com/kristinlnew/website_kl.git[1Phttps://github.com/kristinlnew/website_kl.git[1Phttps://github.com/kristinlnew/website_kl.git[1Phttps://github.com/kristinlnew/website_kl.git[1Phttps://github.com/kristinlnew/website_kl.git[1Pttps://github.com/kristinlnew/website_kl.git
+]0;/stor/home/kn8928/website_kl]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ git push origin master
+Username for 'https://github.com': kristinlnew
+Password for 'https://kristinlnew@github.com': 
+Counting objects: 194, done.
+Delta compression using up to 16 threads.
+Compressing objects:   0% (1/166)   Compressing objects:   1% (2/166)   Compressing objects:   2% (4/166)   Compressing objects:   3% (5/166)   Compressing objects:   4% (7/166)   Compressing objects:   5% (9/166)   Compressing objects:   6% (10/166)   Compressing objects:   7% (12/166)   Compressing objects:   8% (14/166)   Compressing objects:   9% (15/166)   Compressing objects:  10% (17/166)   Compressing objects:  11% (19/166)   Compressing objects:  12% (20/166)   Compressing objects:  13% (22/166)   Compressing objects:  14% (24/166)   Compressing objects:  15% (25/166)   Compressing objects:  16% (27/166)   Compressing objects:  17% (29/166)   Compressing objects:  18% (30/166)   Compressing objects:  19% (32/166)   Compressing objects:  20% (34/166)   Compressing objects:  21% (35/166)   Compressing objects:  22% (37/166)   Compressing objects:  23% (39/166)   Compressing objects:  24% (40/166)   Compressing objects:  25% (42/166)   Compressing objects:  26% (44/166)   Compressing objects:  27% (45/166)   Compressing objects:  28% (47/166)   Compressing objects:  29% (49/166)   Compressing objects:  30% (50/166)   Compressing objects:  31% (52/166)   Compressing objects:  32% (54/166)   Compressing objects:  33% (55/166)   Compressing objects:  34% (57/166)   Compressing objects:  35% (59/166)   Compressing objects:  36% (60/166)   Compressing objects:  37% (62/166)   Compressing objects:  38% (64/166)   Compressing objects:  39% (65/166)   Compressing objects:  40% (67/166)   Compressing objects:  41% (69/166)   Compressing objects:  42% (70/166)   Compressing objects:  43% (72/166)   Compressing objects:  44% (74/166)   Compressing objects:  45% (75/166)   Compressing objects:  46% (77/166)   Compressing objects:  47% (79/166)   Compressing objects:  48% (80/166)   Compressing objects:  49% (82/166)   Compressing objects:  50% (83/166)   Compressing objects:  51% (85/166)   Compressing objects:  52% (87/166)   Compressing objects:  53% (88/166)   Compressing objects:  54% (90/166)   Compressing objects:  55% (92/166)   Compressing objects:  56% (93/166)   Compressing objects:  57% (95/166)   Compressing objects:  58% (97/166)   Compressing objects:  59% (98/166)   Compressing objects:  60% (100/166)   Compressing objects:  61% (102/166)   Compressing objects:  62% (103/166)   Compressing objects:  63% (105/166)   Compressing objects:  64% (107/166)   Compressing objects:  65% (108/166)   Compressing objects:  66% (110/166)   Compressing objects:  67% (112/166)   Compressing objects:  68% (113/166)   Compressing objects:  69% (115/166)   Compressing objects:  70% (117/166)   Compressing objects:  71% (118/166)   Compressing objects:  72% (120/166)   Compressing objects:  73% (122/166)   Compressing objects:  74% (123/166)   Compressing objects:  75% (125/166)   Compressing objects:  76% (127/166)   Compressing objects:  77% (128/166)   Compressing objects:  78% (130/166)   Compressing objects:  79% (132/166)   Compressing objects:  80% (133/166)   Compressing objects:  81% (135/166)   Compressing objects:  82% (137/166)   Compressing objects:  83% (138/166)   Compressing objects:  84% (140/166)   Compressing objects:  85% (142/166)   Compressing objects:  86% (143/166)   Compressing objects:  87% (145/166)   Compressing objects:  88% (147/166)   Compressing objects:  89% (148/166)   Compressing objects:  90% (150/166)   Compressing objects:  91% (152/166)   Compressing objects:  92% (153/166)   Compressing objects:  93% (155/166)   Compressing objects:  94% (157/166)   Compressing objects:  95% (158/166)   Compressing objects:  96% (160/166)   Compressing objects:  97% (162/166)   Compressing objects:  98% (163/166)   Compressing objects:  99% (165/166)   Compressing objects: 100% (166/166)   Compressing objects: 100% (166/166), done.
+Writing objects:   0% (1/194)   Writing objects:   1% (2/194)   Writing objects:   2% (4/194)   Writing objects:   3% (6/194)   Writing objects:   4% (8/194)   Writing objects:   5% (10/194)   Writing objects:   6% (12/194)   Writing objects:   7% (14/194)   Writing objects:   8% (16/194)   Writing objects:   9% (18/194)   Writing objects:  10% (20/194)   Writing objects:  11% (22/194)   Writing objects:  12% (24/194)   Writing objects:  13% (26/194)   Writing objects:  14% (28/194)   Writing objects:  15% (30/194)   Writing objects:  16% (32/194)   Writing objects:  17% (33/194)   Writing objects:  18% (35/194)   Writing objects:  19% (37/194)   Writing objects:  20% (39/194)   Writing objects:  21% (41/194)   Writing objects:  22% (43/194)   Writing objects:  23% (45/194)   Writing objects:  24% (47/194)   Writing objects:  25% (49/194)   Writing objects:  26% (51/194)   Writing objects:  27% (53/194)   Writing objects:  28% (55/194)   Writing objects:  29% (57/194)   Writing objects:  30% (60/194)   Writing objects:  31% (61/194)   Writing objects:  32% (63/194)   Writing objects:  33% (65/194)   Writing objects:  34% (66/194)   Writing objects:  35% (68/194)   Writing objects:  36% (70/194)   Writing objects:  37% (72/194)   Writing objects:  38% (74/194)   Writing objects:  39% (76/194)   Writing objects:  40% (78/194)   Writing objects:  41% (80/194)   Writing objects:  42% (83/194)   Writing objects:  43% (84/194)   Writing objects:  44% (86/194)   Writing objects:  45% (89/194)   Writing objects:  46% (91/194)   Writing objects:  47% (92/194)   Writing objects:  48% (94/194)   Writing objects:  49% (96/194)   Writing objects:  50% (97/194)   Writing objects:  51% (99/194)   Writing objects:  52% (101/194)   Writing objects:  53% (103/194)   Writing objects:  54% (105/194)   Writing objects:  55% (107/194)   Writing objects:  56% (109/194)   Writing objects:  57% (111/194)   Writing objects:  58% (113/194)   Writing objects:  59% (115/194)   Writing objects:  60% (117/194)   Writing objects:  61% (119/194)   Writing objects:  62% (121/194)   Writing objects:  63% (123/194)   Writing objects:  64% (125/194)   Writing objects:  65% (127/194)   Writing objects:  66% (129/194)   Writing objects:  67% (130/194)   Writing objects:  68% (132/194)   Writing objects:  69% (134/194)   Writing objects:  70% (137/194)   Writing objects:  71% (138/194)   Writing objects:  72% (140/194)   Writing objects:  73% (142/194)   Writing objects:  74% (144/194)   Writing objects:  75% (146/194)   Writing objects:  76% (148/194)   Writing objects:  77% (150/194)   Writing objects:  78% (152/194)   Writing objects:  79% (154/194)   Writing objects:  80% (156/194)   Writing objects:  81% (158/194)   Writing objects:  82% (160/194)   Writing objects:  83% (162/194)   Writing objects:  84% (163/194)   Writing objects:  85% (165/194)   Writing objects:  86% (167/194)   Writing objects:  87% (169/194)   Writing objects:  88% (171/194)   Writing objects:  89% (173/194)   Writing objects:  90% (175/194)   Writing objects:  91% (177/194)   Writing objects:  92% (179/194)   Writing objects:  93% (182/194)   Writing objects:  94% (183/194)   Writing objects:  95% (185/194)   Writing objects:  96% (187/194)   Writing objects:  97% (189/194)   Writing objects:  98% (191/194)   Writing objects:  99% (193/194)   Writing objects: 100% (194/194)   Writing objects: 100% (194/194), 1.33 MiB | 3.39 MiB/s, done.
+Total 194 (delta 39), reused 0 (delta 0)
+remote: Resolving deltas:   0% (0/39)[Kremote: Resolving deltas:   5% (2/39)[Kremote: Resolving deltas:   7% (3/39)[Kremote: Resolving deltas:  46% (18/39)[Kremote: Resolving deltas:  53% (21/39)[Kremote: Resolving deltas:  61% (24/39)[Kremote: Resolving deltas:  74% (29/39)[Kremote: Resolving deltas:  79% (31/39)[Kremote: Resolving deltas:  82% (32/39)[Kremote: Resolving deltas:  87% (34/39)[Kremote: Resolving deltas:  89% (35/39)[Kremote: Resolving deltas:  92% (36/39)[Kremote: Resolving deltas:  94% (37/39)[Kremote: Resolving deltas: 100% (39/39)[Kremote: Resolving deltas: 100% (39/39), done.[K
+To https://github.com/kristinlnew/website_kl.git
+ * [new branch]      master -> master
+]0;/stor/home/kn8928/website_kl]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [K]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [K]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [K]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [K]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [K]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ [K]0;kn8928@educcomp01: ~/website_kl[01;32mkn8928@educcomp01[00m:[01;34m~/website_kl[00m$ git add .
