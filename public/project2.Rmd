@@ -1,13 +1,8 @@
 
 ---
 title: "Project2"
-author: "Kristin Newmaster"
-date: "5/1/2020"
-output:
-  pdf_document: default
-  html_document:
-    df_print: paged
-  word_document: default
+output: html_document
+date: '2020-05-13'
 ---
 
 ```{r setup, include=TRUE}
@@ -18,7 +13,7 @@ tidy=TRUE, tidy.opts=list(width.cutoff=60), R.options=list(max.print=100))
 
 ## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
 
 #The first dataset, “calories” gives the average daily caloric intake of an adult, per country and per year. The dataset “sugar” gives the average quantity of sugar and sweeteners eaten per day (in grams), per country and per year. The third dataset, “life” gives the average life expectancy, per country and per year. After combining the datasets and tidying, there are 7958 total observations. After combining the datasets I added a binary variable y which shows whether a person died before or after the age of 60. 
 

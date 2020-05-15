@@ -1,11 +1,8 @@
 ---
-title: "Project 1"
-output:
-  pdf_document: default
-  html_document:
-    df_print: paged
+title: "Project1"
+output: html_document
+date: '2020-05-13'
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
@@ -14,13 +11,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 
 
-##I selected three datasets from Gapminder. The first dataset, “calories” gives the average daily caloric intake of an adult, per country and per year. The dataset “sugar” gives the average quantity of sugar and sweeteners eaten per day (in grams), per country and per year. The third dataset, “life” gives the average life expectancy, per country and per year. These datasets were interesting to me because I am interested in nutrition. I would like to see if there is a relationship between average calories and sugar intake, and between sugar intake and average life expectancy. I am also interested to see how countries compare to one another on all three variables. 
+
+I selected three datasets from Gapminder. The first dataset, “calories” gives the average daily caloric intake of an adult, per country and per year. The dataset “sugar” gives the average quantity of sugar and sweeteners eaten per day (in grams), per country and per year. The third dataset, “life” gives the average life expectancy, per country and per year. These datasets were interesting to me because I am interested in nutrition. I would like to see if there is a relationship between average calories and sugar intake, and between sugar intake and average life expectancy. I am also interested to see how countries compare to one another on all three variables. 
 
 
 ```{r}

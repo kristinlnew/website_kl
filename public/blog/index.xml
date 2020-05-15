@@ -12,13 +12,13 @@
     
     
     <item>
-      <title>Kristin&#39;s Python Experience</title>
-      <link>/blog/kristin-s-python-experience/</link>
+      <title>Python and R Studio</title>
+      <link>/blog/blogpython/</link>
       <pubDate>Fri, 15 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/kristin-s-python-experience/</guid>
-      <description>My names is Kristin and I love Python.
-print(&amp;quot;hello world&amp;quot;) </description>
+      <guid>/blog/blogpython/</guid>
+      <description>R and Python are two examples out of many coding languages.R and Python have the ability to talk to each other in chunks, meaning it is possible to use R markdown with Python code chunks inside. Many professionals have a language they prefer to code in, and the ability to use more than one language in R studio simplifies the process switching between the two.
+Below are Python chunks within R markdown.</description>
     </item>
     
   </channel>

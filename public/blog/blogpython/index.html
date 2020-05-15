@@ -7,7 +7,7 @@
     <meta name="author" content="Kristin" />
     <meta name="description" content="Website">
     <link rel="shortcut icon" type="image/x-icon" href="../../img/favicon.ico">
-    <title>Kristin&#39;s Python Experience</title>
+    <title>Python and R Studio</title>
     <meta name="generator" content="Hugo 0.70.0" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../../css/main.css" />
@@ -56,7 +56,7 @@
       <div class="container">
         <div class="blog-post">
           <h3>
-            <strong><a href="../../blog/kristin-s-python-experience/">Kristin&#39;s Python Experience</a></strong>
+            <strong><a href="../../blog/blogpython/">Python and R Studio</a></strong>
           </h3>
         </div>
         <div class="blog-title">
@@ -69,9 +69,45 @@
         <div class="panel panel-default">
           <div class="panel-body">
             <div class="blogpost">
-              <p>My names is Kristin and I love Python.</p>
-<pre><code class="language-{python}" data-lang="{python}">print(&quot;hello world&quot;)
+              
+
+
+<div class="figure">
+<img src="../../blog/blogpython_files/yyIMG_0454.jpg" />
+
+</div>
+<p>R and Python are two examples out of many coding languages.R and Python have the ability to talk to each other in chunks, meaning it is possible to use R markdown with Python code chunks inside. Many professionals have a language they prefer to code in, and the ability to use more than one language in R studio simplifies the process switching between the two.</p>
+<p>Below are Python chunks within R markdown. In this example you want to pull all numbers out of the text.</p>
+<pre class="python"><code>
+import re
+
+string1=&quot;We have to extract these numbers 12, 47, 48 The integers numbers are also interesting: 189 2036 314\&#39;,\&#39; is a separator, so please extract these numbers 125,789,1450 and also these 564,90456 We like to offer you 7890$ per month in order to complete this task... we are joking&quot;
+print(string1)
 </code></pre>
+<pre><code>## We have to extract these numbers 12, 47, 48 The integers numbers are also interesting: 189 2036 314&#39;,&#39; is a separator, so please extract these numbers 125,789,1450 and also these 564,90456 We like to offer you 7890$ per month in order to complete this task... we are joking</code></pre>
+<pre class="python"><code>x = re.findall(&#39;[0-9]+&#39;, string1)
+print(x)
+
+ 
+</code></pre>
+<pre><code>## [&#39;12&#39;, &#39;47&#39;, &#39;48&#39;, &#39;189&#39;, &#39;2036&#39;, &#39;314&#39;, &#39;125&#39;, &#39;789&#39;, &#39;1450&#39;, &#39;564&#39;, &#39;90456&#39;, &#39;7890&#39;]</code></pre>
+<p>In the following example you want to pull out only the sequences of numbers that make up an IP address.</p>
+<pre class="python"><code>import re 
+string2=&quot;Jan 13 00:48:59: DROP service 68-&gt;67(udp) from 213.92.153.167 to 69.43.107.219, prefix: \&quot;spoof iana-0/8\&quot; \
+(in: eth0 69.43.112.233(38:f8:b7:90:45:92):68 -&gt; 217.70.100.113(00:21:87:79:9c:d9):67 UDP len:576 ttl:64) \
+Jan 13 12:02:48: ACCEPT service dns from 74.125.186.208 to firewall(pub-nic-dns), prefix: \&quot;none\&quot; \
+(in: eth0 74.125.186.208(00:1a:e3:52:5d:8e):36008 -&gt; 140.105.63.158(00:1a:9a:86:2e:62):53 UDP len:82 ttl:38) \
+Jan 13 17:44:52: DROP service 68-&gt;67(udp) from 172.45.240.237 to 217.70.177.60, prefix: \&quot;spoof iana-0/8\&quot; \
+(in: eth0 216.34.90.16(00:21:91:fe:a2:6f):68 -&gt; 69.43.85.253(00:07:e1:7c:53:db):67 UDP len:328 ttl:64) \
+Jan 13 17:52:08: ACCEPT service http from 213.121.184.130 to firewall(pub-nic), prefix: \&quot;none\&quot; \
+(in: eth0 213.121.184.130(00:05:2e:6a:a4:14):8504 -&gt; 140.105.63.164(00:60:11:92:ed:1b):80 TCP flags: ****S* len:52 ttl:109)&quot;
+
+
+x = re.findall( r&#39;[0-9]+(?:\.[0-9]+){3}&#39;, string2)
+print(x)
+</code></pre>
+<pre><code>## [&#39;213.92.153.167&#39;, &#39;69.43.107.219&#39;, &#39;69.43.112.233&#39;, &#39;217.70.100.113&#39;, &#39;74.125.186.208&#39;, &#39;74.125.186.208&#39;, &#39;140.105.63.158&#39;, &#39;172.45.240.237&#39;, &#39;217.70.177.60&#39;, &#39;216.34.90.16&#39;, &#39;69.43.85.253&#39;, &#39;213.121.184.130&#39;, &#39;213.121.184.130&#39;, &#39;140.105.63.164&#39;]</code></pre>
+
               <hr>
               <div class="related-posts">
                 <h5>Related Posts</h5>
